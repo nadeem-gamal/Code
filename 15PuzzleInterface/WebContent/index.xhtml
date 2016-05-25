@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+<script >
+function onLoadHandler(){
+	if(document.getElementById('firstElementId').innerHTML == '0'){
+		document.getElementById('frmId:startBtnId').click();
+	}
+	setInterval(function () {
+		document.getElementById('frmId:nextBtnId').click();
+		console.log('test');
+		}, 1000);
+}
+
+
+</script>
+</h:head>
+<body onload="onLoadHandler()">
+	<h1>Test HTML</h1>
+	<h:outputText value="TEST JSF" /><h:form id="frmId">
+	<h:commandButton id="startBtnId" value="Start"  action="#{testBean.startAction}" />
+	<h:commandButton id="nextBtnId" value="Next" action="#{testBean.next}" />
+	<h:commandButton value="Previous" action="#{testBean.previous}" />
+
+
+	<table id="tableId">
+		<tr>
+			<td id="firstElementId"><h:outputText rendered="#{testBean.c00 != '-1'}" value="#{testBean.c00}" /></td>
+			<td><h:outputText rendered="#{testBean.c01 != '-1'}" value="#{testBean.c01}" /></td>
+			<td><h:outputText rendered="#{testBean.c02 != '-1'}" value="#{testBean.c02}" /></td>
+		</tr>
+		<tr>
+			<td><h:outputText rendered="#{testBean.c10 != '-1'}" value="#{testBean.c10}" /></td>
+			<td><h:outputText rendered="#{testBean.c11 != '-1'}" value="#{testBean.c11}" /></td>
+			<td><h:outputText rendered="#{testBean.c12 != '-1'}" value="#{testBean.c12}" /></td>
+		</tr>
+		<tr>
+			<td><h:outputText rendered="#{testBean.c20 != '-1'}" value="#{testBean.c20}" /></td>
+			<td><h:outputText rendered="#{testBean.c21 != '-1'}" value="#{testBean.c21}" /></td>
+			<td><h:outputText rendered="#{testBean.c22 != '-1'}" value="#{testBean.c22}" /></td>
+		</tr>
+	</table>
+</h:form>
+
+</body>
+</html>
