@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+</h:head>
+<h:body>
+	<div class="container">
+		<h:form class="container">
+			<h:selectOneMenu value="#{login.employeeName}" onchange="submit()">
+				<f:selectItems value="#{login.employeeNames}" />
+			</h:selectOneMenu>
+		</h:form>
+		<h:form>
+			<div class="container">
+
+				<div class="row">
+					<h:outputText value="Name: " class="span2" />
+					<h:outputText value="#{login.employeeName}" />
+				</div>
+
+				<div class="row">
+					<h:outputText value="Fool: " class="span2" />
+					<h:inputText value="#{login.foolNumber}" />
+				</div>
+
+				<div class="row">
+					<h:outputText value="Ta3mea: " class="span2" />
+					<h:inputText value="#{login.ta3meaNumber}" />
+				</div>
+
+				<div class="row">
+					<h:outputText value="Batates: " class="span2" />
+					<h:inputText value="#{login.batatesNumber}" />
+				</div>
+
+				<div class="row">
+					<h:outputText value="Batates baneeh: " class="span2" />
+					<h:inputText value="#{login.batatesBaneehNumber}" />
+				</div>
+
+				<div class="row">
+					<h:outputText value="Batates boksomat: " class="span2" />
+					<h:inputText value="#{login.batatesBoksomatNumber}" />
+				</div>
+
+				<div class="row">
+					<h:outputText value="Cheese kareesh: " class="span2" />
+					<h:inputText value="#{login.cheeseKareeshNumber}" />
+				</div>
+
+				<div class="row">
+					<h:outputText value="Shakshouka: " class="span2" />
+					<h:inputText value="#{login.shakshoukaNumber}" />
+				</div>
+
+
+				<div class="row">
+					<h:outputText value="Babaghanoug: " class="span2" />
+					<h:inputText value="#{login.babaGhanougNumber}" />
+				</div>
+
+			</div>
+			<h:commandButton action="#{login.saveUser}" value="Save" />
+		</h:form>
+		<div class="container">
+			<h:form>
+
+				<h:dataTable value="#{logic.employeesList}" var="employee"
+					class="table table-bordered table-hover">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Name" />
+						</f:facet>
+						<h:outputText value="#{employee.name}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Fool" />
+						</f:facet>
+						<h:outputText value="#{employee.foolNumber}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Ta3mea" />
+						</f:facet>
+						<h:outputText value="#{employee.ta3meaNumber}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Batates" />
+						</f:facet>
+						<h:outputText value="#{employee.batatesNumber}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Batates baneeh" />
+						</f:facet>
+						<h:outputText value="#{employee.batatesBaneehNumber}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Batates boksomat" />
+						</f:facet>
+						<h:outputText value="#{employee.batatesBoksomatNumber}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Cheese kareesh" />
+						</f:facet>
+						<h:outputText value="#{employee.cheeseKareeshNumber}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Shakshouka" />
+						</f:facet>
+						<h:outputText value="#{employee.shakshoukaNumber}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Babaghanoug" />
+						</f:facet>
+						<h:outputText value="#{employee.babaGhanougNumber}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Price(total)" />
+						</f:facet>
+						<h:outputText value="#{employee.price}" />
+					</h:column>
+				</h:dataTable>
+
+				<br />
+				<div class="container">
+					<div class="row">
+						<h:outputText value="Fool: " class="span2" />
+						<h:outputText value="#{logic.foolNumber}" />
+					</div>
+					<div class="row">
+						<h:outputText value="Ta3mea: " class="span2" />
+						<h:outputText value="#{logic.ta3meaNumber}" />
+					</div>
+					<div class="row">
+						<h:outputText value="Batates: " class="span2" />
+						<h:outputText value="#{logic.batatesNumber}" />
+					</div>
+					<div class="row">
+						<h:outputText value="Batates baneeh: " class="span2" />
+						<h:outputText value="#{logic.batatesBaneehNumber}" />
+					</div>
+					<div class="row">
+						<h:outputText value="Batates boksomat: " class="span2" />
+						<h:outputText value="#{logic.batatesBoksomatNumber}" />
+					</div>
+					<div class="row">
+						<h:outputText value="Cheese kareesh: " class="span2" />
+						<h:outputText value="#{logic.cheeseKareeshNumber}" />
+					</div>
+					<div class="row">
+						<h:outputText value="Shakshouka: " class="span2" />
+						<h:outputText value="#{logic.shakshoukaNumber}" />
+					</div>
+					<div class="row">
+						<h:outputText value="Babaghanoug: " class="span2" />
+						<h:outputText value="#{logic.babaGhanougNumber}" />
+					</div>
+					<div class="row">
+						<h:outputText value="Total price: " class="span2" />
+						<h:outputText value="#{logic.totalPrice}" />
+					</div>
+
+				</div>
+
+
+			</h:form>
+		</div>
+	</div>
+</h:body>
+</html>
