@@ -15,8 +15,10 @@
 	<script>
 		var selectBomb = false;
 		var numberOfSelectedBomb = 10;
-		
-		var toggleBombText = function(){
+		var closedBtns = 100;
+
+		var toggleBombText = function(btn){
+			$(btn).toggleClass('active');
 			if(selectBomb == true){
 				selectBomb = false;
 				$('#bombText').html('Open');
@@ -37,6 +39,7 @@
 			$('#minesid').html('');
 			selectBomb = false;
 			numberOfSelectedBomb = 10;
+			closedBtns = 100;
 			$('#numberOfBombText').html('Bomb: ' + numberOfSelectedBomb);
 			$('#bombText').html('Open');
 			var btnCount = 0;
@@ -122,39 +125,45 @@
 			}
 
 			
-			
+			var validateBombs = function(){
+				//Validating bombs
+				for(row = 0; row < 10; row++){
+					for(col = 0; col < 10; col++){
+						buttonNumber = (row * 10) + col;
+						if(($('#' + buttonNumber).html() == '!') && ($('#' + buttonNumber).attr('value') == '-1')){
+							$('#' + buttonNumber).html('T');
+							$('#' + buttonNumber).removeClass('btn-primary');
+							$('#' + buttonNumber).addClass('btn-success');
+							console.log(($('#' + buttonNumber).html()) + ', ' + ($('#' + buttonNumber).attr('value')));
+						}else if(($('#' + buttonNumber).html() == '!') && ($('#' + buttonNumber).attr('value') != '-1')){
+							$('#' + buttonNumber).html('F');
+							$('#' + buttonNumber).removeClass('btn-primary');
+							$('#' + buttonNumber).addClass('btn-danger');
+							console.log(($('#' + buttonNumber).html()) + ', ' + ($('#' + buttonNumber).attr('value')));
+						}
+					}
+				}
+				//Validating bombs
+			}
 			
 			$('button').click(function(){
 				if((selectBomb == false) && ($(this).html() == "")){
 					if($(this).attr('value') == 0){
 						$(this).html(0);
+						closedBtns--;
 					}else{
 						if($(this).attr('value') == -1){
 							$(this).html($(this).attr('value'));
 							$(this).removeClass('btn-primary');
 							$(this).addClass('btn-warning');
 							//Validating bombs
-							for(row = 0; row < 10; row++){
-								for(col = 0; col < 10; col++){
-									buttonNumber = (row * 10) + col;
-									if(($('#' + buttonNumber).html() == '!') && ($('#' + buttonNumber).attr('value') == '-1')){
-										$('#' + buttonNumber).html('T');
-										$('#' + buttonNumber).removeClass('btn-primary');
-										$('#' + buttonNumber).addClass('btn-success');
-										console.log(($('#' + buttonNumber).html()) + ', ' + ($('#' + buttonNumber).attr('value')));
-									}else if(($('#' + buttonNumber).html() == '!') && ($('#' + buttonNumber).attr('value') != '-1')){
-										$('#' + buttonNumber).html('F');
-										$('#' + buttonNumber).removeClass('btn-primary');
-										$('#' + buttonNumber).addClass('btn-danger');
-										console.log(($('#' + buttonNumber).html()) + ', ' + ($('#' + buttonNumber).attr('value')));
-									}
-								}
-							}
+							validateBombs();
 							//Validating bombs
 							alert('Game Over');
 							initGame();
 						}else{
 							$(this).html($(this).attr('value'));
+							closedBtns--;
 						}
 					}
 				}else{
@@ -162,7 +171,14 @@
 						$(this).html('!');
 						numberOfSelectedBomb--;
 						$('#numberOfBombText').html('Bomb: ' + numberOfSelectedBomb);
+						closedBtns--;
 					}
+				}
+				if(closedBtns == 0){
+					//Validating bombs
+					validateBombs();
+					//Validating bombs
+					alert('Win');
 				}
 			});
 		}
@@ -177,7 +193,7 @@
 	<h1>Mines</h1>
 	<br />
 	<button type="button" class="btn btn-lg btn-danger" onclick="initGame();">Reset</button>
-	<button type="button" class="btn btn-lg btn-warning" onclick="toggleBombText();">Select bomb</button>
+	<button type="button" class="btn btn-lg btn-warning" onclick="toggleBombText(this);">Select bomb</button>
 	<br />
 	<br />
 	<p id="bombText">Open</p>
