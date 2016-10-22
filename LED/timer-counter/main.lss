@@ -1,0 +1,152 @@
+
+main.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000d4  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .debug_aranges 00000020  00000000  00000000  00000128  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  2 .debug_pubnames 0000001b  00000000  00000000  00000148  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_info   000000a4  00000000  00000000  00000163  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_abbrev 00000078  00000000  00000000  00000207  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_line   000000f1  00000000  00000000  0000027f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_frame  00000020  00000000  00000000  00000370  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_str    00000079  00000000  00000000  00000390  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 36 00 	call	0x6c	; 0x6c <main>
+  64:	0c 94 68 00 	jmp	0xd0	; 0xd0 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <main>:
+#include <avr/io.h>
+
+int main(void)
+{
+	DDRB = 0b01111111;
+  6c:	8f e7       	ldi	r24, 0x7F	; 127
+  6e:	87 bb       	out	0x17, r24	; 23
+	PORTB = 0b00000000;
+  70:	18 ba       	out	0x18, r1	; 24
+	DDRD = 0b01111111;
+  72:	81 bb       	out	0x11, r24	; 17
+	PORTD = 0b00000000;
+  74:	12 ba       	out	0x12, r1	; 18
+	TCCR1B |= (1 << CS10) | (1 << CS11);
+  76:	8e b5       	in	r24, 0x2e	; 46
+  78:	83 60       	ori	r24, 0x03	; 3
+  7a:	8e bd       	out	0x2e, r24	; 46
+	while(1)
+	{
+		if(TCNT1 > 2232)
+		{
+			TCNT1 = 0;
+			PORTB = (1 << LEDNumber[0]);
+  7c:	e1 e0       	ldi	r30, 0x01	; 1
+  7e:	f0 e0       	ldi	r31, 0x00	; 0
+  80:	61 e0       	ldi	r22, 0x01	; 1
+  82:	70 e0       	ldi	r23, 0x00	; 0
+{
+	DDRB = 0b01111111;
+	PORTB = 0b00000000;
+	DDRD = 0b01111111;
+	PORTD = 0b00000000;
+	TCCR1B |= (1 << CS10) | (1 << CS11);
+  84:	40 e0       	ldi	r20, 0x00	; 0
+  86:	50 e0       	ldi	r21, 0x00	; 0
+  88:	20 e0       	ldi	r18, 0x00	; 0
+  8a:	30 e0       	ldi	r19, 0x00	; 0
+	uint8_t LEDNumber[2];
+	while(1)
+	{
+		if(TCNT1 > 2232)
+  8c:	8c b5       	in	r24, 0x2c	; 44
+  8e:	9d b5       	in	r25, 0x2d	; 45
+  90:	89 5b       	subi	r24, 0xB9	; 185
+  92:	98 40       	sbci	r25, 0x08	; 8
+  94:	d8 f3       	brcs	.-10     	; 0x8c <main+0x20>
+		{
+			TCNT1 = 0;
+  96:	1d bc       	out	0x2d, r1	; 45
+  98:	1c bc       	out	0x2c, r1	; 44
+			PORTB = (1 << LEDNumber[0]);
+  9a:	cf 01       	movw	r24, r30
+  9c:	02 2e       	mov	r0, r18
+  9e:	02 c0       	rjmp	.+4      	; 0xa4 <main+0x38>
+  a0:	88 0f       	add	r24, r24
+  a2:	99 1f       	adc	r25, r25
+  a4:	0a 94       	dec	r0
+  a6:	e2 f7       	brpl	.-8      	; 0xa0 <main+0x34>
+  a8:	88 bb       	out	0x18, r24	; 24
+  aa:	2f 5f       	subi	r18, 0xFF	; 255
+  ac:	3f 4f       	sbci	r19, 0xFF	; 255
+			LEDNumber[0]++;
+			if(LEDNumber[0] > 6)
+  ae:	27 30       	cpi	r18, 0x07	; 7
+  b0:	31 05       	cpc	r19, r1
+  b2:	61 f7       	brne	.-40     	; 0x8c <main+0x20>
+			{
+				LEDNumber[0] = 0;
+				PORTD = 1 << LEDNumber[1];
+  b4:	cb 01       	movw	r24, r22
+  b6:	04 2e       	mov	r0, r20
+  b8:	02 c0       	rjmp	.+4      	; 0xbe <main+0x52>
+  ba:	88 0f       	add	r24, r24
+  bc:	99 1f       	adc	r25, r25
+  be:	0a 94       	dec	r0
+  c0:	e2 f7       	brpl	.-8      	; 0xba <main+0x4e>
+  c2:	82 bb       	out	0x12, r24	; 18
+  c4:	4f 5f       	subi	r20, 0xFF	; 255
+  c6:	5f 4f       	sbci	r21, 0xFF	; 255
+				LEDNumber[1]++;
+				if(LEDNumber[1] > 6)
+  c8:	47 30       	cpi	r20, 0x07	; 7
+  ca:	51 05       	cpc	r21, r1
+  cc:	d9 f2       	breq	.-74     	; 0x84 <main+0x18>
+  ce:	dc cf       	rjmp	.-72     	; 0x88 <main+0x1c>
+
+000000d0 <_exit>:
+  d0:	f8 94       	cli
+
+000000d2 <__stop_program>:
+  d2:	ff cf       	rjmp	.-2      	; 0xd2 <__stop_program>

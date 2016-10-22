@@ -1,0 +1,234 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	Peek_A_Boo
+  18               	Peek_A_Boo:
+  19               	.LFB8:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 8D9A      		sbi 49-32,5
+  25               	.LM3:
+  26               	/* #APP */
+  27               	 ;  60 "main.c" 1
+  28 0002 0000      		nop
+  29               	 ;  0 "" 2
+  30               	.LM4:
+  31               	 ;  61 "main.c" 1
+  32 0004 0000      		nop
+  33               	 ;  0 "" 2
+  34               	.LM5:
+  35               	/* #NOAPP */
+  36 0006 82B3      		in r24,50-32
+  37 0008 807C      		andi r24,lo8(-64)
+  38 000a 82BB      		out 50-32,r24
+  39               	/* epilogue start */
+  40               	.LM6:
+  41 000c 0895      		ret
+  42               	.LFE8:
+  44               	.global	Check_IF_MrLCD_isBusy
+  46               	Check_IF_MrLCD_isBusy:
+  47               	.LFB7:
+  48               	.LM7:
+  49               	/* prologue: function */
+  50               	/* frame size = 0 */
+  51               	.LM8:
+  52 000e 17BA      		out 55-32,__zero_reg__
+  53               	.LM9:
+  54 0010 979A      		sbi 50-32,7
+  55               	.LM10:
+  56 0012 82B3      		in r24,50-32
+  57 0014 887F      		andi r24,lo8(-8)
+  58 0016 82BB      		out 50-32,r24
+  59 0018 00C0      		rjmp .L4
+  60               	.L5:
+  61               	.LM11:
+  62 001a 0E94 0000 		call Peek_A_Boo
+  63               	.L4:
+  64               	.LM12:
+  65 001e C799      		sbic 56-32,7
+  66 0020 00C0      		rjmp .L5
+  67               	.LM13:
+  68 0022 8FEF      		ldi r24,lo8(-1)
+  69 0024 87BB      		out 55-32,r24
+  70               	/* epilogue start */
+  71               	.LM14:
+  72 0026 0895      		ret
+  73               	.LFE7:
+  75               	.global	Send_A_Command
+  77               	Send_A_Command:
+  78               	.LFB9:
+  79               	.LM15:
+  80               	.LVL0:
+  81 0028 1F93      		push r17
+  82               	/* prologue: function */
+  83               	/* frame size = 0 */
+  84 002a 182F      		mov r17,r24
+  85               	.LM16:
+  86 002c 0E94 0000 		call Check_IF_MrLCD_isBusy
+  87               	.LVL1:
+  88               	.LM17:
+  89 0030 18BB      		out 56-32,r17
+  90               	.LM18:
+  91 0032 82B3      		in r24,50-32
+  92 0034 8B77      		andi r24,lo8(123)
+  93 0036 82BB      		out 50-32,r24
+  94               	.LM19:
+  95 0038 0E94 0000 		call Peek_A_Boo
+  96               	.LM20:
+  97 003c 18BA      		out 56-32,__zero_reg__
+  98               	/* epilogue start */
+  99               	.LM21:
+ 100 003e 1F91      		pop r17
+ 101               	.LVL2:
+ 102 0040 0895      		ret
+ 103               	.LFE9:
+ 105               	.global	Send_A_Character
+ 107               	Send_A_Character:
+ 108               	.LFB10:
+ 109               	.LM22:
+ 110               	.LVL3:
+ 111 0042 1F93      		push r17
+ 112               	/* prologue: function */
+ 113               	/* frame size = 0 */
+ 114 0044 182F      		mov r17,r24
+ 115               	.LM23:
+ 116 0046 0E94 0000 		call Check_IF_MrLCD_isBusy
+ 117               	.LVL4:
+ 118               	.LM24:
+ 119 004a 18BB      		out 56-32,r17
+ 120               	.LM25:
+ 121 004c 9798      		cbi 50-32,7
+ 122               	.LM26:
+ 123 004e 929A      		sbi 50-32,2
+ 124               	.LM27:
+ 125 0050 0E94 0000 		call Peek_A_Boo
+ 126               	.LM28:
+ 127 0054 18BA      		out 56-32,__zero_reg__
+ 128               	/* epilogue start */
+ 129               	.LM29:
+ 130 0056 1F91      		pop r17
+ 131               	.LVL5:
+ 132 0058 0895      		ret
+ 133               	.LFE10:
+ 135               	.global	main
+ 137               	main:
+ 138               	.LFB6:
+ 139               	.LM30:
+ 140 005a 1F93      		push r17
+ 141               	/* prologue: function */
+ 142               	/* frame size = 0 */
+ 143               	.LM31:
+ 144 005c 81B3      		in r24,49-32
+ 145 005e 846A      		ori r24,lo8(-92)
+ 146 0060 81BB      		out 49-32,r24
+ 147               	.LBB46:
+ 148               	.LBB47:
+ 149               	.LBB48:
+ 150               	.LBB49:
+ 151               	.LM32:
+ 152 0062 80E3      		ldi r24,lo8(30000)
+ 153 0064 95E7      		ldi r25,hi8(30000)
+ 154               	.LVL6:
+ 155               	/* #APP */
+ 156               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 157 0066 0197      		1: sbiw r24,1
+ 158 0068 01F4      		brne 1b
+ 159               	 ;  0 "" 2
+ 160               	/* #NOAPP */
+ 161               	.LBE49:
+ 162               	.LBE48:
+ 163               	.LBE47:
+ 164               	.LBE46:
+ 165               	.LM33:
+ 166 006a 81E0      		ldi r24,lo8(1)
+ 167               	.LVL7:
+ 168 006c 0E94 0000 		call Send_A_Command
+ 169               	.LBB50:
+ 170               	.LBB51:
+ 171               	.LBB52:
+ 172               	.LBB53:
+ 173               	.LM34:
+ 174 0070 80EA      		ldi r24,lo8(4000)
+ 175 0072 9FE0      		ldi r25,hi8(4000)
+ 176               	.LVL8:
+ 177               	/* #APP */
+ 178               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 179 0074 0197      		1: sbiw r24,1
+ 180 0076 01F4      		brne 1b
+ 181               	 ;  0 "" 2
+ 182               	/* #NOAPP */
+ 183               	.LBE53:
+ 184               	.LBE52:
+ 185               	.LBE51:
+ 186               	.LBE50:
+ 187               	.LM35:
+ 188 0078 88E3      		ldi r24,lo8(56)
+ 189               	.LVL9:
+ 190 007a 0E94 0000 		call Send_A_Command
+ 191               	.LBB54:
+ 192               	.LBB55:
+ 193               	.LBB56:
+ 194               	.LBB57:
+ 195               	.LM36:
+ 196 007e 15E8      		ldi r17,lo8(-123)
+ 197 0080 812F      		mov r24,r17
+ 198               	.LVL10:
+ 199               	/* #APP */
+ 200               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 201 0082 8A95      		1: dec r24
+ 202 0084 01F4      		brne 1b
+ 203               	 ;  0 "" 2
+ 204               	/* #NOAPP */
+ 205               	.LBE57:
+ 206               	.LBE56:
+ 207               	.LBE55:
+ 208               	.LBE54:
+ 209               	.LM37:
+ 210 0086 8EE0      		ldi r24,lo8(14)
+ 211               	.LVL11:
+ 212 0088 0E94 0000 		call Send_A_Command
+ 213               	.LBB58:
+ 214               	.LBB59:
+ 215               	.LBB60:
+ 216               	.LBB61:
+ 217               	.LM38:
+ 218               	/* #APP */
+ 219               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 220 008c 1A95      		1: dec r17
+ 221 008e 01F4      		brne 1b
+ 222               	 ;  0 "" 2
+ 223               	.LVL12:
+ 224               	/* #NOAPP */
+ 225               	.LBE61:
+ 226               	.LBE60:
+ 227               	.LBE59:
+ 228               	.LBE58:
+ 229               	.LM39:
+ 230 0090 81E4      		ldi r24,lo8(65)
+ 231 0092 0E94 0000 		call Send_A_Character
+ 232               	.L12:
+ 233 0096 00C0      		rjmp .L12
+ 234               	.LFE6:
+ 292               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\Dragon\AppData\Local\Temp/ccflY18L.s:2      *ABS*:0000003f __SREG__
+C:\Users\Dragon\AppData\Local\Temp/ccflY18L.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Dragon\AppData\Local\Temp/ccflY18L.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Dragon\AppData\Local\Temp/ccflY18L.s:5      *ABS*:00000034 __CCP__
+C:\Users\Dragon\AppData\Local\Temp/ccflY18L.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Dragon\AppData\Local\Temp/ccflY18L.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Dragon\AppData\Local\Temp/ccflY18L.s:18     .text:00000000 Peek_A_Boo
+C:\Users\Dragon\AppData\Local\Temp/ccflY18L.s:46     .text:0000000e Check_IF_MrLCD_isBusy
+C:\Users\Dragon\AppData\Local\Temp/ccflY18L.s:77     .text:00000028 Send_A_Command
+C:\Users\Dragon\AppData\Local\Temp/ccflY18L.s:107    .text:00000042 Send_A_Character
+C:\Users\Dragon\AppData\Local\Temp/ccflY18L.s:137    .text:0000005a main
+
+NO UNDEFINED SYMBOLS

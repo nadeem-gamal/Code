@@ -1,0 +1,93 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	main
+  18               	main:
+  19               	.LFB2:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 8FE7      		ldi r24,lo8(127)
+  25 0002 87BB      		out 55-32,r24
+  26               	.LM3:
+  27 0004 18BA      		out 56-32,__zero_reg__
+  28               	.LM4:
+  29 0006 81BB      		out 49-32,r24
+  30               	.LM5:
+  31 0008 12BA      		out 50-32,__zero_reg__
+  32               	.LM6:
+  33 000a 8EB5      		in r24,78-32
+  34 000c 8360      		ori r24,lo8(3)
+  35 000e 8EBD      		out 78-32,r24
+  36               	.LM7:
+  37 0010 E1E0      		ldi r30,lo8(1)
+  38 0012 F0E0      		ldi r31,hi8(1)
+  39 0014 61E0      		ldi r22,lo8(1)
+  40 0016 70E0      		ldi r23,hi8(1)
+  41               	.L3:
+  42               	.LM8:
+  43 0018 40E0      		ldi r20,lo8(0)
+  44 001a 50E0      		ldi r21,hi8(0)
+  45               	.L4:
+  46 001c 20E0      		ldi r18,lo8(0)
+  47 001e 30E0      		ldi r19,hi8(0)
+  48               	.L9:
+  49               	.LM9:
+  50 0020 8CB5      		in r24,76-32
+  51 0022 9DB5      		in r25,(76)+1-32
+  52 0024 895B      		subi r24,lo8(2233)
+  53 0026 9840      		sbci r25,hi8(2233)
+  54 0028 00F0      		brlo .L9
+  55               	.LM10:
+  56 002a 1DBC      		out (76)+1-32,__zero_reg__
+  57 002c 1CBC      		out 76-32,__zero_reg__
+  58               	.LM11:
+  59 002e CF01      		movw r24,r30
+  60 0030 022E      		mov r0,r18
+  61 0032 00C0      		rjmp 2f
+  62 0034 880F      	1:	lsl r24
+  63 0036 991F      		rol r25
+  64 0038 0A94      	2:	dec r0
+  65 003a 02F4      		brpl 1b
+  66 003c 88BB      		out 56-32,r24
+  67 003e 2F5F      		subi r18,lo8(-(1))
+  68 0040 3F4F      		sbci r19,hi8(-(1))
+  69               	.LM12:
+  70 0042 2730      		cpi r18,7
+  71 0044 3105      		cpc r19,__zero_reg__
+  72 0046 01F4      		brne .L9
+  73               	.LM13:
+  74 0048 CB01      		movw r24,r22
+  75 004a 042E      		mov r0,r20
+  76 004c 00C0      		rjmp 2f
+  77 004e 880F      	1:	lsl r24
+  78 0050 991F      		rol r25
+  79 0052 0A94      	2:	dec r0
+  80 0054 02F4      		brpl 1b
+  81 0056 82BB      		out 50-32,r24
+  82 0058 4F5F      		subi r20,lo8(-(1))
+  83 005a 5F4F      		sbci r21,hi8(-(1))
+  84               	.LM14:
+  85 005c 4730      		cpi r20,7
+  86 005e 5105      		cpc r21,__zero_reg__
+  87 0060 01F0      		breq .L3
+  88 0062 00C0      		rjmp .L4
+  89               	.LFE2:
+ 115               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\Nadeem\AppData\Local\Temp/cc1oOahx.s:2      *ABS*:0000003f __SREG__
+C:\Users\Nadeem\AppData\Local\Temp/cc1oOahx.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Nadeem\AppData\Local\Temp/cc1oOahx.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Nadeem\AppData\Local\Temp/cc1oOahx.s:5      *ABS*:00000034 __CCP__
+C:\Users\Nadeem\AppData\Local\Temp/cc1oOahx.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Nadeem\AppData\Local\Temp/cc1oOahx.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Nadeem\AppData\Local\Temp/cc1oOahx.s:18     .text:00000000 main
+
+NO UNDEFINED SYMBOLS

@@ -1,0 +1,236 @@
+
+main.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000108  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .debug_aranges 00000020  00000000  00000000  0000015c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  2 .debug_pubnames 0000006c  00000000  00000000  0000017c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_info   0000028e  00000000  00000000  000001e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_abbrev 0000010e  00000000  00000000  00000476  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_line   00000230  00000000  00000000  00000584  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_frame  00000060  00000000  00000000  000007b4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_str    0000011e  00000000  00000000  00000814  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_loc    0000007f  00000000  00000000  00000932  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 63 00 	call	0xc6	; 0xc6 <main>
+  64:	0c 94 82 00 	jmp	0x104	; 0x104 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <Peek_A_Boo>:
+	DataDir_MrLCDsCrib = 0xFF;
+}
+
+void Peek_A_Boo()
+{
+	DataDir_MrLCDsControl |= 1<< LightSwitch;
+  6c:	8d 9a       	sbi	0x11, 5	; 17
+	asm volatile ("nop");
+  6e:	00 00       	nop
+	asm volatile ("nop");
+  70:	00 00       	nop
+	MrLCDsControl &= ~ 1<<LightSwitch;
+  72:	82 b3       	in	r24, 0x12	; 18
+  74:	80 7c       	andi	r24, 0xC0	; 192
+  76:	82 bb       	out	0x12, r24	; 18
+}
+  78:	08 95       	ret
+
+0000007a <Check_IF_MrLCD_isBusy>:
+	}
+}
+
+void Check_IF_MrLCD_isBusy()
+{
+	DataDir_MrLCDsCrib = 0;
+  7a:	17 ba       	out	0x17, r1	; 23
+	MrLCDsControl |= 1<<ReadWrite;
+  7c:	97 9a       	sbi	0x12, 7	; 18
+	MrLCDsControl &= ~ 1<<BiPolarMood;
+  7e:	82 b3       	in	r24, 0x12	; 18
+  80:	88 7f       	andi	r24, 0xF8	; 248
+  82:	82 bb       	out	0x12, r24	; 18
+  84:	02 c0       	rjmp	.+4      	; 0x8a <Check_IF_MrLCD_isBusy+0x10>
+	
+	while(MrLCDsCrib >= 0x80)
+	{
+		Peek_A_Boo();
+  86:	0e 94 36 00 	call	0x6c	; 0x6c <Peek_A_Boo>
+{
+	DataDir_MrLCDsCrib = 0;
+	MrLCDsControl |= 1<<ReadWrite;
+	MrLCDsControl &= ~ 1<<BiPolarMood;
+	
+	while(MrLCDsCrib >= 0x80)
+  8a:	c7 99       	sbic	0x18, 7	; 24
+  8c:	fc cf       	rjmp	.-8      	; 0x86 <Check_IF_MrLCD_isBusy+0xc>
+	{
+		Peek_A_Boo();
+	}
+	
+	
+	DataDir_MrLCDsCrib = 0xFF;
+  8e:	8f ef       	ldi	r24, 0xFF	; 255
+  90:	87 bb       	out	0x17, r24	; 23
+}
+  92:	08 95       	ret
+
+00000094 <Send_A_Command>:
+	asm volatile ("nop");
+	MrLCDsControl &= ~ 1<<LightSwitch;
+}
+
+void Send_A_Command(unsigned char command)
+{
+  94:	1f 93       	push	r17
+  96:	18 2f       	mov	r17, r24
+	Check_IF_MrLCD_isBusy();
+  98:	0e 94 3d 00 	call	0x7a	; 0x7a <Check_IF_MrLCD_isBusy>
+	MrLCDsCrib = command;
+  9c:	18 bb       	out	0x18, r17	; 24
+	MrLCDsControl &= ~ (1<<ReadWrite|1<<BiPolarMood);
+  9e:	82 b3       	in	r24, 0x12	; 18
+  a0:	8b 77       	andi	r24, 0x7B	; 123
+  a2:	82 bb       	out	0x12, r24	; 18
+	Peek_A_Boo();
+  a4:	0e 94 36 00 	call	0x6c	; 0x6c <Peek_A_Boo>
+	MrLCDsCrib = 0;
+  a8:	18 ba       	out	0x18, r1	; 24
+}
+  aa:	1f 91       	pop	r17
+  ac:	08 95       	ret
+
+000000ae <Send_A_Character>:
+
+void Send_A_Character(unsigned char character)
+{
+  ae:	1f 93       	push	r17
+  b0:	18 2f       	mov	r17, r24
+	Check_IF_MrLCD_isBusy();
+  b2:	0e 94 3d 00 	call	0x7a	; 0x7a <Check_IF_MrLCD_isBusy>
+	MrLCDsCrib = character;
+  b6:	18 bb       	out	0x18, r17	; 24
+	MrLCDsControl &= ~ (1<<ReadWrite);
+  b8:	97 98       	cbi	0x12, 7	; 18
+	MrLCDsControl |= 1<<BiPolarMood;
+  ba:	92 9a       	sbi	0x12, 2	; 18
+	Peek_A_Boo();
+  bc:	0e 94 36 00 	call	0x6c	; 0x6c <Peek_A_Boo>
+	MrLCDsCrib = 0;
+  c0:	18 ba       	out	0x18, r1	; 24
+
+}
+  c2:	1f 91       	pop	r17
+  c4:	08 95       	ret
+
+000000c6 <main>:
+void Peek_A_Boo(void);
+void Send_A_Command(unsigned char command);
+void Send_A_Character(unsigned char character);
+
+int main(void)
+{
+  c6:	1f 93       	push	r17
+	DataDir_MrLCDsControl |= 1<<LightSwitch | 1<<ReadWrite | 1<<BiPolarMood;
+  c8:	81 b3       	in	r24, 0x11	; 17
+  ca:	84 6a       	ori	r24, 0xA4	; 164
+  cc:	81 bb       	out	0x11, r24	; 17
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+  ce:	80 e3       	ldi	r24, 0x30	; 48
+  d0:	95 e7       	ldi	r25, 0x75	; 117
+  d2:	01 97       	sbiw	r24, 0x01	; 1
+  d4:	f1 f7       	brne	.-4      	; 0xd2 <main+0xc>
+	_delay_ms(15);
+	
+	
+	
+	Send_A_Command(0x01);
+  d6:	81 e0       	ldi	r24, 0x01	; 1
+  d8:	0e 94 4a 00 	call	0x94	; 0x94 <Send_A_Command>
+  dc:	80 ea       	ldi	r24, 0xA0	; 160
+  de:	9f e0       	ldi	r25, 0x0F	; 15
+  e0:	01 97       	sbiw	r24, 0x01	; 1
+  e2:	f1 f7       	brne	.-4      	; 0xe0 <main+0x1a>
+	_delay_ms(2);
+	
+	Send_A_Command(0x38);
+  e4:	88 e3       	ldi	r24, 0x38	; 56
+  e6:	0e 94 4a 00 	call	0x94	; 0x94 <Send_A_Command>
+    can be achieved.
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+  ea:	15 e8       	ldi	r17, 0x85	; 133
+  ec:	81 2f       	mov	r24, r17
+  ee:	8a 95       	dec	r24
+  f0:	f1 f7       	brne	.-4      	; 0xee <main+0x28>
+	_delay_us(50);
+	
+	Send_A_Command(0b00001110);
+  f2:	8e e0       	ldi	r24, 0x0E	; 14
+  f4:	0e 94 4a 00 	call	0x94	; 0x94 <Send_A_Command>
+  f8:	1a 95       	dec	r17
+  fa:	f1 f7       	brne	.-4      	; 0xf8 <main+0x32>
+	_delay_us(50);
+	
+	
+	Send_A_Character(0x41);
+  fc:	81 e4       	ldi	r24, 0x41	; 65
+  fe:	0e 94 57 00 	call	0xae	; 0xae <Send_A_Character>
+ 102:	ff cf       	rjmp	.-2      	; 0x102 <main+0x3c>
+
+00000104 <_exit>:
+ 104:	f8 94       	cli
+
+00000106 <__stop_program>:
+ 106:	ff cf       	rjmp	.-2      	; 0x106 <__stop_program>
