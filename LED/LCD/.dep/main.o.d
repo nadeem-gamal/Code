@@ -1,1 +1,3 @@
-main.o: main.c
+main.o: main.c lcd.h
+
+lcd.h:
