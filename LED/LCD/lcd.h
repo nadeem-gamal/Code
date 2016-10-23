@@ -42,6 +42,9 @@
 #include <avr/io.h>
 #include<util/delay.h>
 
+
+char firstAddressForLCD[4] = {0, 64, 20, 84};
+
 void pinChange(int a, int b)
 {
 	if(b == 0)
@@ -242,10 +245,12 @@ void Lcd8_Clear()
 
 void Lcd8_Set_Cursor(char a, char b)
 {
-	if(a == 1)
-	Lcd8_Cmd(0x80 + b);
-	else if(a == 2)
-	Lcd8_Cmd(0xC0 + b);
+//	if(a == 1)
+//	Lcd8_Cmd(0x80 + b);
+//	else if(a == 2)
+//	Lcd8_Cmd(0xC0 + b);
+	
+	Lcd8_Cmd(0x80 + firstAddressForLCD[b-1] + (a-1));
 }
 
 void Lcd8_Init()
