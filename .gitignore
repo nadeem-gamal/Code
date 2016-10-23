@@ -1,0 +1,11 @@
+/TrackFileVisualizer/TrackFileVisualizer/bin
+/TrackFileVisualizer/TrackFileVisualizer/obj
+/LED/*.eep
+/LED/*.elf
+/LED/*.hex
+/LED/*.lss
+/LED/*.lst
+/LED/*.map
+/LED/*.o
+/LED/*.sym
+

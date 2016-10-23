@@ -1757,33 +1757,33 @@
  1979               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:2      *ABS*:0000003f __SREG__
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:3      *ABS*:0000003e __SP_H__
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:4      *ABS*:0000003d __SP_L__
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:5      *ABS*:00000034 __CCP__
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:18     .text:00000000 pinChange
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:541    .text:00000280 Lcd8_Port
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:698    .text:0000035e Lcd8_Cmd
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:776    .text:000003a4 Lcd8_Clear
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:791    .text:000003ac Lcd8_Set_Cursor
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:1798   .data:00000015 firstAddressForLCD
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:815    .text:000003c0 Lcd8_Init
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:936    .text:00000424 Lcd8_Write_Char
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:1014   .text:0000046a Lcd8_Write_String
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:1043   .text:00000482 Lcd8_Shift_Right
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:1058   .text:0000048a Lcd8_Shift_Left
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:1073   .text:00000492 Lcd4_Port
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:1160   .text:00000506 Lcd4_Cmd
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:1238   .text:0000054c Lcd4_Clear
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:1256   .text:0000055a Lcd4_Set_Cursor
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:1303   .text:00000584 Lcd4_Init
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:1405   .text:000005e0 Lcd4_Write_Char
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:1539   .text:0000065a Lcd4_Write_String
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:1568   .text:00000672 Lcd4_Shift_Right
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:1586   .text:00000680 Lcd4_Shift_Left
-C:\Users\Dragon\AppData\Local\Temp/cc56zOqT.s:1616   .text:0000068e main
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:2      *ABS*:0000003f __SREG__
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:5      *ABS*:00000034 __CCP__
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:18     .text:00000000 pinChange
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:541    .text:00000280 Lcd8_Port
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:698    .text:0000035e Lcd8_Cmd
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:776    .text:000003a4 Lcd8_Clear
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:791    .text:000003ac Lcd8_Set_Cursor
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:1798   .data:00000015 firstAddressForLCD
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:815    .text:000003c0 Lcd8_Init
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:936    .text:00000424 Lcd8_Write_Char
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:1014   .text:0000046a Lcd8_Write_String
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:1043   .text:00000482 Lcd8_Shift_Right
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:1058   .text:0000048a Lcd8_Shift_Left
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:1073   .text:00000492 Lcd4_Port
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:1160   .text:00000506 Lcd4_Cmd
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:1238   .text:0000054c Lcd4_Clear
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:1256   .text:0000055a Lcd4_Set_Cursor
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:1303   .text:00000584 Lcd4_Init
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:1405   .text:000005e0 Lcd4_Write_Char
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:1539   .text:0000065a Lcd4_Write_String
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:1568   .text:00000672 Lcd4_Shift_Right
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:1586   .text:00000680 Lcd4_Shift_Left
+C:\Users\Dragon\AppData\Local\Temp/cc5EK12n.s:1616   .text:0000068e main
 
 UNDEFINED SYMBOLS
 itoa
