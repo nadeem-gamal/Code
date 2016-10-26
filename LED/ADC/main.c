@@ -32,7 +32,6 @@ int main(void)
 	
 	ADCSRA |= 1 << ADSC;
 
-	char positionString[4];
 	while(1)
 	{
 		
@@ -44,11 +43,14 @@ ISR(ADC_vect)
 	uint8_t theLow = ADCL;
 	uint16_t tenBitValue = ADCH << 2 | theLow >> 6;
 	
-	char positionString[4];
+	char adcResult[4];
 	
-	itoa(tenBitValue, positionString, 10);
+	itoa(tenBitValue, adcResult, 10);
 	Lcd8_Set_Cursor(1, 1);
-	Lcd8_Write_String(positionString);
+	Lcd8_Write_String(adcResult);
 	
 	Lcd8_Write_String("    ");	
+	
+	ADCSRA |= 1 << ADSC;
+
 }
