@@ -31,13 +31,14 @@
 			root
 		</property>
 		<property name="hibernate.connection.password">
-			
+
 		</property>
 
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">create</property>
 
 		<!-- List of XML mapping files -->
-		<mapping class="Article" />
+		<mapping package="edu.electronics.dal.orm" />
+
 
 	</session-factory>
 

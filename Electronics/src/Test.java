@@ -4,50 +4,31 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import edu.electronics.dal.DataAccess;
+import edu.electronics.dal.orm.Resistor;
 
 @ManagedBean
 @ViewScoped
-public class Test implements Serializable{
+public class Test implements Serializable {
 
-	public void btnPressed(){
+	public Test() {
+	}
+
+	public void btnPressed() {
 		System.out.println("b tn pressed");
+
 		
-		StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
-	    .configure( "hibernate.cfg.xml" )
-	    .build();
+		Resistor a = new Resistor();
+		a.setNumberOfPieces(3);
+		a.setNumberOfUsedPieces(2);
+		a.setValue(100);
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.save(a);
 
-	Metadata metadata = new MetadataSources( standardRegistry )
-//	    .addAnnotatedClass( MyEntity.class )
-//	    .addAnnotatedClassName( "org.hibernate.example.Customer" )
-//	    .addResource( "org/hibernate/example/Order.hbm.xml" )
-//	    .addResource( "org/hibernate/example/Product.orm.xml" )
-	    .getMetadataBuilder()
-	    .applyImplicitNamingStrategy( ImplicitNamingStrategyJpaCompliantImpl.INSTANCE )
-	    .build();
-	
-	
-
-	SessionFactory sessionFactory = metadata.buildSessionFactory();//metadata.getSessionFactoryBuilder()
-//	    .applyBeanManager( getBeanManager() )
-//	    .build();
-	
-	Session session = sessionFactory.openSession();
-	
-	
-	Article a = new Article();
-	a.setId(1);
-	a.setName("a1");
-	session.beginTransaction();
-	session.save(a);
-	
-	session.getTransaction().commit();
-	session.close();
+		session.getTransaction().commit();
+		session.close();
+		System.out.println("btn - end");
 	}
 }
