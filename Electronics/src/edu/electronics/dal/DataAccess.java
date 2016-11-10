@@ -17,7 +17,7 @@ public class DataAccess {
 	public static void init() {
 		StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
 				.configure("edu/electronics/dal/hibernate.cfg.xml").build();
-
+//edu/electronics/dal/
 		Metadata metadata = new MetadataSources(standardRegistry)
 				// .addAnnotatedClass( MyEntity.class )
 				// .addAnnotatedClassName( "org.hibernate.example.Customer" )
@@ -40,6 +40,7 @@ public class DataAccess {
 	
 	public static Session openSession(){
 		//TODO:: 
-		return null;
+		return sessionFactory.openSession();
+//		return null;
 	}
 }

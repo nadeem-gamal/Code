@@ -36,10 +36,11 @@
 
 		<property name="hbm2ddl.auto">create</property>
 
-		<!-- List of XML mapping files -->
-		<mapping package="edu.electronics.dal.orm" />
-
-
+		<!-- List of XML mapping files --><!-- 
+	<mapping class="edu.electronics.dal.orm.*" />
+ -->
+ 
+  <mapping class="edu.electronics.dal.orm.Resistor"/>
 	</session-factory>
 
 </hibernate-configuration>
