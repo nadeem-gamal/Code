@@ -5,7 +5,7 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui"
+   
     >
 
 <f:loadBundle basename="resources.application" var="msg"/>
@@ -15,10 +15,32 @@
 </h:head>
 
 <h:body>
-<h3><h:outputText value="#{msg.welcomeHeading}" /></h3>
-<p><h:outputText value="#{msg.welcomeMessage}" /></p>
+
 <h:form>
-	<p:commandButton value="teetetetetetet" action="#{test.btnPressed()}"></p:commandButton>
+<h:commandButton action="resistors" value="Resistor" />
+
+<h:commandButton action="batteries" value="Battery" />
+
+<h:commandButton action="breadBoards" value="BreadBoard" />
+
+<h:commandButton action="capacitors" value="Capacitor" />
+
+<h:commandButton action="crystals" value="Crystal" />
+<h:commandButton action="diodes" value="Diode" />
+<h:commandButton action="dipSwitches" value="DipSwitch" />
+
+<h:commandButton action="ics" value="IC" />
+
+<h:commandButton action="leds" value="LED" />
+
+
+<h:commandButton action="pushButtons" value="PushButton" />
+
+<h:commandButton action="sevenSegments" value="SevenSegment" />
+
+<h:commandButton action="transistors" value="Transistor" />
+
+<h:commandButton action="voltageRegulators" value="VoltageRegulator" />
 </h:form>
 </h:body>
 </html>

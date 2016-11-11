@@ -4,11 +4,11 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.SequenceGenerator;
 
 @Entity
-@Table
 public class Crystal extends BaseEntity {
 
 	private int id;
@@ -17,8 +17,8 @@ public class Crystal extends BaseEntity {
 	private int value;
 
 	@Id
-	@GeneratedValue
-	@Column
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "crystalRaw_seq")
+	@SequenceGenerator(name = "crystalRaw_seq", sequenceName = "CRYSTAL_ID_SEQ")
 	public int getId() {
 		return id;
 	}

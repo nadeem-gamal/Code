@@ -4,11 +4,11 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.SequenceGenerator;
 
 @Entity
-@Table
 public class VoltageRegulator extends BaseEntity {
 
 	private int id;
@@ -18,8 +18,8 @@ public class VoltageRegulator extends BaseEntity {
 	private String name;
 
 	@Id
-	@GeneratedValue
-	@Column
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "voltageRequlatorRaw_seq")
+	@SequenceGenerator(name = "voltageRequlatorRaw_seq", sequenceName = "VOLTAGE_REGULATOR_ID_SEQ")
 	public int getId() {
 		return id;
 	}

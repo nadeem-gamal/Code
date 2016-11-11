@@ -1,5 +1,8 @@
 package edu.electronics.dal.orm;
 
-public class BaseEntity {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class BaseEntity implements Serializable{
 
 }

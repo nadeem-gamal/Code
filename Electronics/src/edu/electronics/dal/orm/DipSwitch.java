@@ -4,20 +4,21 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.SequenceGenerator;
 
 @Entity
-@Table
 public class DipSwitch extends BaseEntity {
 
 	private int id;
 	private int numberOfPieces;
 	private int numberOfUsedPieces;
-private int numberOfSwitches;
-@Id
-	@GeneratedValue
-	@Column
+	private int numberOfSwitches;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dipSwitchRaw_seq")
+	@SequenceGenerator(name = "dipSwitchRaw_seq", sequenceName = "DIP_SWITCH_ID_SEQ")
 	public int getId() {
 		return id;
 	}
@@ -56,5 +57,4 @@ private int numberOfSwitches;
 		this.numberOfSwitches = numberOfSwitches;
 	}
 
-	
 }

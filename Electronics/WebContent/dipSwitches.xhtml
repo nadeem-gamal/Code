@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><h:outputText value="DipSwitches" /></title>
+</h:head>
+
+<h:body>
+	<h:form id="dipSwitchForm">
+
+		<table>
+
+			<tr>
+				<th>
+					<h:outputText value="switches" />
+				</th>
+				<td>
+					<p:inputText id="switchesId" value="#{dipSwitches.dipSwitch.numberOfSwitches}" />
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<h:outputText value="used" />
+				</th>
+				<td>
+					<p:inputText id="usedId" value="#{dipSwitches.dipSwitch.numberOfUsedPieces}" />
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<h:outputText value="total" />
+				</th>
+				<td>
+					<p:inputText id="totalId" value="#{dipSwitches.dipSwitch.numberOfPieces}" />
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<h:commandButton value="Save" action="#{dipSwitches.save}">
+						<f:ajax execute="@form" render="@form" />
+					</h:commandButton>
+				</td>
+			</tr>
+		</table>
+
+		<p:dataTable id="dipSwitchListId" value="#{dipSwitches.dipSwitchList}" var="row" rowIndexVar="index" rows="10" paginator="true">
+			<p:column>
+				<f:facet name="header">#</f:facet>
+				<h:outputText value="#{index + 1}" />
+			</p:column>
+
+
+			<p:column filterBy=" #{row.numberOfSwitches}" filterMatchMode="contains">
+				<f:facet name="header">switches</f:facet>
+				<h:outputText value="#{row.numberOfSwitches}" />
+			</p:column>
+
+			<p:column filterBy=" #{row.numberOfUsedPieces}" filterMatchMode="contains">
+				<f:facet name="header">used</f:facet>
+				<h:outputText value="#{row.numberOfUsedPieces}" />
+			</p:column>
+
+			<p:column filterBy="#{row.numberOfPieces}" filterMatchMode="contains">
+				<f:facet name="header">total</f:facet>
+				<h:outputText value="#{row.numberOfPieces}" />
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>

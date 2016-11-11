@@ -36,9 +36,23 @@
 
 		<property name="hbm2ddl.auto">create</property>
 
-		<!-- List of XML mapping files --><!-- 
-	<mapping class="edu.electronics.dal.orm.*" />
- -->
+		<!-- List of XML mapping files -->
+		
+		<mapping class="edu.electronics.dal.orm.Battery" />
+		<mapping class="edu.electronics.dal.orm.BreadBoard" />
+		<mapping class="edu.electronics.dal.orm.Capacitor" />
+		<mapping class="edu.electronics.dal.orm.Crystal" />
+
+		<mapping class="edu.electronics.dal.orm.Diode" />
+		<mapping class="edu.electronics.dal.orm.DipSwitch" />
+		<mapping class="edu.electronics.dal.orm.IC" />
+		<mapping class="edu.electronics.dal.orm.LED" />
+		<mapping class="edu.electronics.dal.orm.PushButton" />
+		<mapping class="edu.electronics.dal.orm.Resistor" />
+		<mapping class="edu.electronics.dal.orm.SevenSegment" />
+		<mapping class="edu.electronics.dal.orm.Transistor" />
+		<mapping class="edu.electronics.dal.orm.VoltageRegulator" />
+	
  
   <mapping class="edu.electronics.dal.orm.Resistor"/>
 	</session-factory>

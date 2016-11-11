@@ -4,11 +4,11 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.SequenceGenerator;
 
 @Entity
-@Table
 public class Resistor extends BaseEntity {
 	private int id;
 	private int value;
@@ -16,8 +16,8 @@ public class Resistor extends BaseEntity {
 	private int numberOfUsedPieces;
 
 	@Id
-	@GeneratedValue
-	@Column
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "resistorRaw_seq")
+	@SequenceGenerator(name = "resistorRaw_seq", sequenceName = "RESISTOR_ID_SEQ")
 	public int getId() {
 		return id;
 	}

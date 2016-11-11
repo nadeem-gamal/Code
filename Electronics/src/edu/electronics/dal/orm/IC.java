@@ -4,11 +4,11 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.SequenceGenerator;
 
 @Entity
-@Table
 public class IC extends BaseEntity {
 	private int id;
 	private int numberOfPieces;
@@ -23,8 +23,8 @@ public class IC extends BaseEntity {
 	private String dataSheet;
 
 	@Id
-	@GeneratedValue
-	@Column
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "icRaw_seq")
+	@SequenceGenerator(name = "icRaw_seq", sequenceName = "IC_ID_SEQ")
 	public int getId() {
 		return id;
 	}

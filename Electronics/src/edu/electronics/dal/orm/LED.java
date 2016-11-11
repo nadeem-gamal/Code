@@ -4,11 +4,11 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.SequenceGenerator;
 
 @Entity
-@Table
 public class LED extends BaseEntity {
 	private int id;
 	private int color;
@@ -17,8 +17,8 @@ public class LED extends BaseEntity {
 	private int numberOfUsedPieces;
 
 	@Id
-	@GeneratedValue
-	@Column
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ledRaw_seq")
+	@SequenceGenerator(name = "ledRaw_seq", sequenceName = "LED_ID_SEQ")
 	public int getId() {
 		return id;
 	}
