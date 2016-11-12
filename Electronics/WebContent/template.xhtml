@@ -7,14 +7,21 @@
 
 <h:body>
 	<ui:composition>
-		<div class="container-fluid">
+		<ui:include src="/header.xhtml" />
+
+		<ui:include src="/menu.xhtml" />
+
+					<ui:insert />
+
+<!-- 
+<div class="container">
 			<div class="row">
-				<ui:include src="/menu.xhtml" />
-				<div class="main">
+				<div class="container">
 					<ui:insert />
 				</div>
 			</div>
 		</div>
-	</ui:composition>
+		 -->
+			</ui:composition>
 </h:body>
 </html>

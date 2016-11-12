@@ -15,25 +15,46 @@
 <h:body>
 	<h:form id="resistorForm">
 		<ui:decorate template="/template.xhtml">
+			<h2>Resistors</h2>
 			<table>
 				<tr>
-					<th><h:outputText value="value" /></th>
-					<td><p:inputText id="valueId" value="#{resistors.resistor.value}" /></td>
+					<th><h:outputText value="Value" /></th>
+					<td>
+
+						<div class="input-group">
+							<p:inputText id="valueId" value="#{resistors.resistor.value}" styleClass="form-control" />
+							<div class="input-group-addon">Ω</div>
+						</div>
+					</td>
 				</tr>
 				<tr>
-					<th><h:outputText value="used" /></th>
-					<td><p:inputText id="usedId" value="#{resistors.resistor.numberOfUsedPieces}" /></td>
+					<td height="5" />
 				</tr>
 				<tr>
-					<th><h:outputText value="total" /></th>
-					<td><p:inputText id="totalId" value="#{resistors.resistor.numberOfPieces}" /></td>
+					<th><h:outputText value="Used" /></th>
+					<td><p:inputText id="usedId" value="#{resistors.resistor.numberOfUsedPieces}" styleClass="form-control" /></td>
+				</tr>
+				<tr>
+					<td height="5" />
+				</tr>
+				<tr>
+					<th><h:outputText value="Total" /></th>
+					<td><p:inputText id="totalId" value="#{resistors.resistor.numberOfPieces}" styleClass="form-control" /></td>
+				</tr>
+				<tr>
+					<td height="5" />
 				</tr>
 
 				<tr>
+					<td></td>
 					<td><h:commandButton value="Save" action="#{resistors.save}" styleClass="btn btn-primary">
 							<f:ajax execute="resistorForm:valueId resistorForm:usedId resistorForm:totalId" render="resistorForm:valueId resistorForm:usedId resistorForm:totalId resistorForm:resistorListId" />
 						</h:commandButton></td>
 				</tr>
+				<tr>
+					<td height="5" />
+				</tr>
+
 			</table>
 
 			<table>
@@ -45,21 +66,47 @@
 							</p:column>
 
 							<p:column filterBy=" #{row.value}" filterMatchMode="contains">
-								<f:facet name="header">value</f:facet>
+								<f:facet name="header">Value ( Ω )</f:facet>
 								<h:outputText value="#{row.value}" />
 							</p:column>
 
 							<p:column filterBy=" #{row.numberOfUsedPieces}" filterMatchMode="contains">
-								<f:facet name="header">used</f:facet>
+								<f:facet name="header">Used</f:facet>
 								<h:outputText value="#{row.numberOfUsedPieces}" />
+								<h:commandLink >
+									<span class="glyphicon glyphicon-edit" aria-hidden="true"> </span>
+									<f:ajax execute="" render="" />
+								</h:commandLink>
+
 							</p:column>
 
 							<p:column filterBy="#{row.numberOfPieces}" filterMatchMode="contains">
-								<f:facet name="header">total</f:facet>
+								<f:facet name="header">Total</f:facet>
 								<h:outputText value="#{row.numberOfPieces}" />
+								<h:commandLink>
+								
+									<span class="glyphicon glyphicon-edit" aria-hidden="true"> </span>
+									<f:ajax execute="" render="" />
+								</h:commandLink>
+							</p:column>
+							<p:column>
+								<f:facet name="header">Usage ( % )</f:facet>
+								<div class="progress">
+									<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="#{row.numberOfUsedPieces}" aria-valuemin="0" aria-valuemax="#{row.numberOfPieces}" style="width: #{row.percentageOfUsedPieces}%;"></div>
+								</div>
+							</p:column>
+							<p:column>
+								<f:facet name="header">Delete</f:facet>
+								<h:commandLink >
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"> </span>
+
+									<f:ajax execute="" render="" />
+								</h:commandLink>
+
 							</p:column>
 
 						</p:dataTable></td>
+						<td style="width: 10px;"></td>
 				</tr>
 			</table>
 		</ui:decorate>
