@@ -1,46 +1,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-   
-    >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
 
-<f:loadBundle basename="resources.application" var="msg"/>
 
 <h:head>
-    <title><h:outputText value="#{msg.welcomeTitle}" /></title>
+	<h:outputStylesheet library="css" name="bootstrap.css" target="head" />
+	<h:outputStylesheet library="css" name="bootstrap-theme.css" target="head" />
+	<h:outputScript library="js" name="jquery.js" target="head" />
+	<h:outputScript library="js" name="bootstrap.js" target="head" />
+
+	<h:outputScript library="js" name="utilities.js" target="head" />
+	<title><h:outputText value="#{msg.welcomeTitle}" /></title>
 </h:head>
 
 <h:body>
 
-<h:form>
-<h:commandButton action="resistors" value="Resistor" />
-
-<h:commandButton action="batteries" value="Battery" />
-
-<h:commandButton action="breadBoards" value="BreadBoard" />
-
-<h:commandButton action="capacitors" value="Capacitor" />
-
-<h:commandButton action="crystals" value="Crystal" />
-<h:commandButton action="diodes" value="Diode" />
-<h:commandButton action="dipSwitches" value="DipSwitch" />
-
-<h:commandButton action="ics" value="IC" />
-
-<h:commandButton action="leds" value="LED" />
-
-
-<h:commandButton action="pushButtons" value="PushButton" />
-
-<h:commandButton action="sevenSegments" value="SevenSegment" />
-
-<h:commandButton action="transistors" value="Transistor" />
-
-<h:commandButton action="voltageRegulators" value="VoltageRegulator" />
-</h:form>
+	<h:form>
+		<ui:decorate template="/template.xhtml">
+			<h:commandButton action="resistors" value="Resistor" />
+			<h:commandButton action="batteries" value="Battery" />
+			<h:commandButton action="breadBoards" value="BreadBoard" />
+			<h:commandButton action="capacitors" value="Capacitor" />
+			<h:commandButton action="crystals" value="Crystal" />
+			<h:commandButton action="diodes" value="Diode" />
+			<h:commandButton action="dipSwitches" value="DipSwitch" />
+			<h:commandButton action="ics" value="IC" />
+			<h:commandButton action="leds" value="LED" />
+			<h:commandButton action="pushButtons" value="PushButton" />
+			<h:commandButton action="sevenSegments" value="SevenSegment" />
+			<h:commandButton action="transistors" value="Transistor" />
+			<h:commandButton action="voltageRegulators" value="VoltageRegulator" />
+		</ui:decorate>
+	</h:form>
 </h:body>
 </html>

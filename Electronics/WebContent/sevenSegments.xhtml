@@ -4,70 +4,66 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<h:outputStylesheet library="css" name="bootstrap.css" target="head" />
+	<h:outputStylesheet library="css" name="bootstrap-theme.css" target="head" />
+	<h:outputScript library="js" name="jquery.js" target="head" />
+	<h:outputScript library="js" name="bootstrap.js" target="head" />
+	<h:outputScript library="js" name="utilities.js" target="head" />
 	<title><h:outputText value="SevenSegments" /></title>
 </h:head>
 
 <h:body>
 	<h:form id="sevenSegmentForm">
+		<ui:decorate template="/template.xhtml">
 
-		<table>
-			<tr>
-				<th>
-					<h:outputText value="type" />
-				</th>
-				<td>
-					<p:inputText id="typeId" value="#{sevenSegments.sevenSegment.type}" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<h:outputText value="used" />
-				</th>
-				<td>
-					<p:inputText id="usedId" value="#{sevenSegments.sevenSegment.numberOfUsedPieces}" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<h:outputText value="total" />
-				</th>
-				<td>
-					<p:inputText id="totalId" value="#{sevenSegments.sevenSegment.numberOfPieces}" />
-				</td>
-			</tr>
+			<table>
+				<tr>
+					<th><h:outputText value="type" /></th>
+					<td><p:inputText id="typeId" value="#{sevenSegments.sevenSegment.type}" /></td>
+				</tr>
+				<tr>
+					<th><h:outputText value="used" /></th>
+					<td><p:inputText id="usedId" value="#{sevenSegments.sevenSegment.numberOfUsedPieces}" /></td>
+				</tr>
+				<tr>
+					<th><h:outputText value="total" /></th>
+					<td><p:inputText id="totalId" value="#{sevenSegments.sevenSegment.numberOfPieces}" /></td>
+				</tr>
 
-			<tr>
-				<td>
-					<h:commandButton value="Save" action="#{sevenSegments.save}">
-						<f:ajax execute="@form" render="@form" />
-					</h:commandButton>
-				</td>
-			</tr>
-		</table>
-
-		<p:dataTable id="sevenSegmentListId" value="#{sevenSegments.sevenSegmentList}" var="row" rowIndexVar="index" rows="10" paginator="true">
-			<p:column>
-				<f:facet name="header">#</f:facet>
-				<h:outputText value="#{index + 1}" />
-			</p:column>
+				<tr>
+					<td><h:commandButton value="Save" action="#{sevenSegments.save}" styleClass="btn btn-primary">
+							<f:ajax execute="@form" render="@form" />
+						</h:commandButton></td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td><p:dataTable id="sevenSegmentListId" value="#{sevenSegments.sevenSegmentList}" var="row" rowIndexVar="index" rows="10" paginator="true">
+							<p:column>
+								<f:facet name="header">#</f:facet>
+								<h:outputText value="#{index + 1}" />
+							</p:column>
 
 
-			<p:column filterBy=" #{row.type}" filterMatchMode="contains">
-				<f:facet name="header">type</f:facet>
-				<h:outputText value="#{row.type}" />
-			</p:column>
+							<p:column filterBy=" #{row.type}" filterMatchMode="contains">
+								<f:facet name="header">type</f:facet>
+								<h:outputText value="#{row.type}" />
+							</p:column>
 
-			<p:column filterBy=" #{row.numberOfUsedPieces}" filterMatchMode="contains">
-				<f:facet name="header">used</f:facet>
-				<h:outputText value="#{row.numberOfUsedPieces}" />
-			</p:column>
+							<p:column filterBy=" #{row.numberOfUsedPieces}" filterMatchMode="contains">
+								<f:facet name="header">used</f:facet>
+								<h:outputText value="#{row.numberOfUsedPieces}" />
+							</p:column>
 
-			<p:column filterBy="#{row.numberOfPieces}" filterMatchMode="contains">
-				<f:facet name="header">total</f:facet>
-				<h:outputText value="#{row.numberOfPieces}" />
-			</p:column>
+							<p:column filterBy="#{row.numberOfPieces}" filterMatchMode="contains">
+								<f:facet name="header">total</f:facet>
+								<h:outputText value="#{row.numberOfPieces}" />
+							</p:column>
 
-		</p:dataTable>
+						</p:dataTable></td>
+				</tr>
+			</table>
+		</ui:decorate>
 	</h:form>
 </h:body>
 </html>

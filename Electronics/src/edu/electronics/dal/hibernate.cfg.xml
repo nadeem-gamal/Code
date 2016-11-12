@@ -34,15 +34,13 @@
 			user1
 		</property>
 
-		<property name="hbm2ddl.auto">create</property>
+		<property name="hbm2ddl.auto">update</property>
 
 		<!-- List of XML mapping files -->
-
 		<mapping class="edu.electronics.dal.orm.Battery" />
 		<mapping class="edu.electronics.dal.orm.BreadBoard" />
-		<mapping class="edu.electronics.dal.orm.Capacitor" />
+		<mapping class="edu.electronics.dal.orm.Capacitor" ></mapping>
 		<mapping class="edu.electronics.dal.orm.Crystal" />
-
 		<mapping class="edu.electronics.dal.orm.Diode" />
 		<mapping class="edu.electronics.dal.orm.DipSwitch" />
 		<mapping class="edu.electronics.dal.orm.IC" />
@@ -52,8 +50,6 @@
 		<mapping class="edu.electronics.dal.orm.SevenSegment" />
 		<mapping class="edu.electronics.dal.orm.Transistor" />
 		<mapping class="edu.electronics.dal.orm.VoltageRegulator" />
-
-
 		<mapping class="edu.electronics.dal.orm.Resistor" />
 	</session-factory>
 

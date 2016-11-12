@@ -4,123 +4,103 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<h:outputStylesheet library="css" name="bootstrap.css" target="head" />
+	<h:outputStylesheet library="css" name="bootstrap-theme.css" target="head" />
+	<h:outputScript library="js" name="jquery.js" target="head" />
+	<h:outputScript library="js" name="bootstrap.js" target="head" />
+	<h:outputScript library="js" name="utilities.js" target="head" />
 	<title><h:outputText value="ICs" /></title>
 </h:head>
 
 <h:body>
 	<h:form id="icForm">
+		<ui:decorate template="/template.xhtml">
 
-		<table>
+			<table>
 
-			<tr>
-				<th>
-					<h:outputText value="name" />
-				</th>
-				<td>
-					<p:inputText id="nameId" value="#{ics.ic.name}" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<h:outputText value="description" />
-				</th>
-				<td>
-					<p:inputText id="descriptionId" value="#{ics.ic.description}" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<h:outputText value="pins" />
-				</th>
-				<td>
-					<p:inputText id="pinsId" value="#{ics.ic.numberOfPins}" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<h:outputText value="image" />
-				</th>
-				<td>
-					<p:inputText id="imageId" value="#{ics.ic.image}" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<h:outputText value="dataSheet" />
-				</th>
-				<td>
-					<p:inputText id="dataSheetId" value="#{ics.ic.dataSheet}" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<h:outputText value="used" />
-				</th>
-				<td>
-					<p:inputText id="usedId" value="#{ics.ic.numberOfUsedPieces}" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<h:outputText value="total" />
-				</th>
-				<td>
-					<p:inputText id="totalId" value="#{ics.ic.numberOfPieces}" />
-				</td>
-			</tr>
+				<tr>
+					<th><h:outputText value="name" /></th>
+					<td><p:inputText id="nameId" value="#{ics.ic.name}" /></td>
+				</tr>
+				<tr>
+					<th><h:outputText value="description" /></th>
+					<td><p:inputText id="descriptionId" value="#{ics.ic.description}" /></td>
+				</tr>
+				<tr>
+					<th><h:outputText value="pins" /></th>
+					<td><p:inputText id="pinsId" value="#{ics.ic.numberOfPins}" /></td>
+				</tr>
+				<tr>
+					<th><h:outputText value="image" /></th>
+					<td><p:inputText id="imageId" value="#{ics.ic.image}" /></td>
+				</tr>
+				<tr>
+					<th><h:outputText value="dataSheet" /></th>
+					<td><p:inputText id="dataSheetId" value="#{ics.ic.dataSheet}" /></td>
+				</tr>
+				<tr>
+					<th><h:outputText value="used" /></th>
+					<td><p:inputText id="usedId" value="#{ics.ic.numberOfUsedPieces}" /></td>
+				</tr>
+				<tr>
+					<th><h:outputText value="total" /></th>
+					<td><p:inputText id="totalId" value="#{ics.ic.numberOfPieces}" /></td>
+				</tr>
 
-			<tr>
-				<td>
-					<h:commandButton value="Save" action="#{ics.save}">
-						<f:ajax execute="@form" render="@form" />
-					</h:commandButton>
-				</td>
-			</tr>
-		</table>
-
-		<p:dataTable id="icListId" value="#{ics.icList}" var="row" rowIndexVar="index" rows="10" paginator="true">
-			<p:column>
-				<f:facet name="header">#</f:facet>
-				<h:outputText value="#{index + 1}" />
-			</p:column>
+				<tr>
+					<td><h:commandButton value="Save" action="#{ics.save}" styleClass="btn btn-primary">
+							<f:ajax execute="@form" render="@form" />
+						</h:commandButton></td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td><p:dataTable id="icListId" value="#{ics.icList}" var="row" rowIndexVar="index" rows="10" paginator="true">
+							<p:column>
+								<f:facet name="header">#</f:facet>
+								<h:outputText value="#{index + 1}" />
+							</p:column>
 
 
-			<p:column filterBy=" #{row.name}" filterMatchMode="contains">
-				<f:facet name="header">name</f:facet>
-				<h:outputText value="#{row.name}" />
-			</p:column>
+							<p:column filterBy=" #{row.name}" filterMatchMode="contains">
+								<f:facet name="header">name</f:facet>
+								<h:outputText value="#{row.name}" />
+							</p:column>
 
-			<p:column filterBy=" #{row.description}" filterMatchMode="contains">
-				<f:facet name="header">description</f:facet>
-				<h:outputText value="#{row.description}" />
-			</p:column>
+							<p:column filterBy=" #{row.description}" filterMatchMode="contains">
+								<f:facet name="header">description</f:facet>
+								<h:outputText value="#{row.description}" />
+							</p:column>
 
-			<p:column filterBy=" #{row.numberOfPins}" filterMatchMode="contains">
-				<f:facet name="header">pins</f:facet>
-				<h:outputText value="#{row.numberOfPins}" />
-			</p:column>
+							<p:column filterBy=" #{row.numberOfPins}" filterMatchMode="contains">
+								<f:facet name="header">pins</f:facet>
+								<h:outputText value="#{row.numberOfPins}" />
+							</p:column>
 
-			<p:column filterBy=" #{row.image}" filterMatchMode="contains">
-				<f:facet name="header">image</f:facet>
-				<h:outputText value="#{row.image}" />
-			</p:column>
+							<p:column filterBy=" #{row.image}" filterMatchMode="contains">
+								<f:facet name="header">image</f:facet>
+								<h:outputText value="#{row.image}" />
+							</p:column>
 
-			<p:column filterBy=" #{row.dataSheet}" filterMatchMode="contains">
-				<f:facet name="header">dataSheet</f:facet>
-				<h:outputText value="#{row.dataSheet}" />
-			</p:column>
+							<p:column filterBy=" #{row.dataSheet}" filterMatchMode="contains">
+								<f:facet name="header">dataSheet</f:facet>
+								<h:outputText value="#{row.dataSheet}" />
+							</p:column>
 
-			<p:column filterBy=" #{row.numberOfUsedPieces}" filterMatchMode="contains">
-				<f:facet name="header">used</f:facet>
-				<h:outputText value="#{row.numberOfUsedPieces}" />
-			</p:column>
+							<p:column filterBy=" #{row.numberOfUsedPieces}" filterMatchMode="contains">
+								<f:facet name="header">used</f:facet>
+								<h:outputText value="#{row.numberOfUsedPieces}" />
+							</p:column>
 
-			<p:column filterBy="#{row.numberOfPieces}" filterMatchMode="contains">
-				<f:facet name="header">total</f:facet>
-				<h:outputText value="#{row.numberOfPieces}" />
-			</p:column>
+							<p:column filterBy="#{row.numberOfPieces}" filterMatchMode="contains">
+								<f:facet name="header">total</f:facet>
+								<h:outputText value="#{row.numberOfPieces}" />
+							</p:column>
 
-		</p:dataTable>
+						</p:dataTable></td>
+				</tr>
+			</table>
+		</ui:decorate>
 	</h:form>
 </h:body>
 </html>

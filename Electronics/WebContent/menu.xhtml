@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.css" target="head" />
+	<h:outputStylesheet library="css" name="bootstrap-theme.css" target="head" />
+	<h:outputScript library="js" name="jquery.js" target="head" />
+	<h:outputScript library="js" name="bootstrap.js" target="head" />
+
+</h:head>
+
+<h:body>
+	<ui:composition>
+	
+		<div class="col-sm-3 col-md-2 sidebar">
+			<div class="list-group">
+				<a href="resistors.xhtml" class="list-group-item">Resistor</a>
+				<a href="batteries.xhtml" class="list-group-item">Battery</a>
+				<a href="breadBoards.xhtml" class="list-group-item">BreadBoard</a>
+				<a href="capacitors.xhtml" class="list-group-item">Capacitor</a>
+				<a href="crystals.xhtml" class="list-group-item">Crystal</a>
+				<a href="diodes.xhtml" class="list-group-item">Diode</a>
+				<a href="dipSwitches.xhtml" class="list-group-item">DipSwitch</a>
+				<a href="ics.xhtml" class="list-group-item">IC</a>
+				<a href="leds.xhtml" class="list-group-item">LED</a>
+				<a href="pushButtons.xhtml" class="list-group-item">PushButton</a>
+				<a href="sevenSegments.xhtml" class="list-group-item">SevenSegment</a>
+				<a href="transistors.xhtml" class="list-group-item">Transistor</a>
+				<a href="voltageRegulators.xhtml" class="list-group-item">VoltageRegulator</a>
+			</div>
+		</div>
+		<h:outputScript type="javascript">
+			var pageName = window.location.pathname.split('/').reverse()[0];
+			$("a.list-group-item[href='"+pageName+"']").addClass('active');
+	</h:outputScript>
+	</ui:composition>
+</h:body>
+</html>

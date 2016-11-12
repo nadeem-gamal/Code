@@ -4,69 +4,65 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<h:outputStylesheet library="css" name="bootstrap.css" target="head" />
+	<h:outputStylesheet library="css" name="bootstrap-theme.css" target="head" />
+	<h:outputScript library="js" name="jquery.js" target="head" />
+	<h:outputScript library="js" name="bootstrap.js" target="head" />
+	<h:outputScript library="js" name="utilities.js" target="head" />
 	<title><h:outputText value="Resistor" /></title>
 </h:head>
 
 <h:body>
 	<h:form id="resistorForm">
+		<ui:decorate template="/template.xhtml">
+			<table>
+				<tr>
+					<th><h:outputText value="value" /></th>
+					<td><p:inputText id="valueId" value="#{resistors.resistor.value}" /></td>
+				</tr>
+				<tr>
+					<th><h:outputText value="used" /></th>
+					<td><p:inputText id="usedId" value="#{resistors.resistor.numberOfUsedPieces}" /></td>
+				</tr>
+				<tr>
+					<th><h:outputText value="total" /></th>
+					<td><p:inputText id="totalId" value="#{resistors.resistor.numberOfPieces}" /></td>
+				</tr>
 
-		<table>
-			<tr>
-				<th>
-					<h:outputText value="value" />
-				</th>
-				<td>
-					<p:inputText id="valueId" value="#{resistors.resistor.value}" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<h:outputText value="used" />
-				</th>
-				<td>
-					<p:inputText id="usedId" value="#{resistors.resistor.numberOfUsedPieces}" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<h:outputText value="total" />
-				</th>
-				<td>
-					<p:inputText id="totalId" value="#{resistors.resistor.numberOfPieces}" />
-				</td>
-			</tr>
+				<tr>
+					<td><h:commandButton value="Save" action="#{resistors.save}" styleClass="btn btn-primary">
+							<f:ajax execute="resistorForm:valueId resistorForm:usedId resistorForm:totalId" render="resistorForm:valueId resistorForm:usedId resistorForm:totalId resistorForm:resistorListId" />
+						</h:commandButton></td>
+				</tr>
+			</table>
 
-			<tr>
-				<td>
-					<h:commandButton value="Save" action="#{resistors.save}">
-						<f:ajax execute="resistorForm:valueId resistorForm:usedId resistorForm:totalId" render="resistorForm:valueId resistorForm:usedId resistorForm:totalId resistorForm:resistorListId" />
-					</h:commandButton>
-				</td>
-			</tr>
-		</table>
+			<table>
+				<tr>
+					<td><p:dataTable id="resistorListId" value="#{resistors.resistorList}" var="row" rowIndexVar="index" rows="10" paginator="true">
+							<p:column>
+								<f:facet name="header">#</f:facet>
+								<h:outputText value="#{index + 1}" />
+							</p:column>
 
-		<p:dataTable id="resistorListId" value="#{resistors.resistorList}" var="row" rowIndexVar="index" rows="10" paginator="true">
-			<p:column>
-				<f:facet name="header">#</f:facet>
-				<h:outputText value="#{index + 1}" />
-			</p:column>
+							<p:column filterBy=" #{row.value}" filterMatchMode="contains">
+								<f:facet name="header">value</f:facet>
+								<h:outputText value="#{row.value}" />
+							</p:column>
 
-			<p:column filterBy=" #{row.value}" filterMatchMode="contains">
-				<f:facet name="header">value</f:facet>
-				<h:outputText value="#{row.value}" />
-			</p:column>
+							<p:column filterBy=" #{row.numberOfUsedPieces}" filterMatchMode="contains">
+								<f:facet name="header">used</f:facet>
+								<h:outputText value="#{row.numberOfUsedPieces}" />
+							</p:column>
 
-			<p:column filterBy=" #{row.numberOfUsedPieces}" filterMatchMode="contains">
-				<f:facet name="header">used</f:facet>
-				<h:outputText value="#{row.numberOfUsedPieces}" />
-			</p:column>
+							<p:column filterBy="#{row.numberOfPieces}" filterMatchMode="contains">
+								<f:facet name="header">total</f:facet>
+								<h:outputText value="#{row.numberOfPieces}" />
+							</p:column>
 
-			<p:column filterBy="#{row.numberOfPieces}" filterMatchMode="contains">
-				<f:facet name="header">total</f:facet>
-				<h:outputText value="#{row.numberOfPieces}" />
-			</p:column>
-
-		</p:dataTable>
+						</p:dataTable></td>
+				</tr>
+			</table>
+		</ui:decorate>
 	</h:form>
 </h:body>
 </html>
