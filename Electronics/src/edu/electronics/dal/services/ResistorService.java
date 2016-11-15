@@ -16,6 +16,14 @@ public class ResistorService extends BaseService {
 		session.getTransaction().commit();
 		session.close();
 	}
+	
+	public static void deleteResistor(Resistor resistor) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.delete(resistor);
+		session.getTransaction().commit();
+		session.close();
+	}
 
 	@SuppressWarnings("deprecation")
 	public static List<Resistor> getAllResistors() {
