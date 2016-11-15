@@ -30,6 +30,11 @@ public class Resistors extends BaseBean {
 		resistorList.add(resistor);
 		resistor = new Resistor();
 	}
+	
+	public void delete(Resistor resistor) {
+		ResistorService.deleteResistor(resistor);
+		resistorList.remove(resistor);
+	}
 
 	public Resistor getResistor() {
 		return resistor;
