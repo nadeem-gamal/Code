@@ -50,6 +50,19 @@
 								<f:facet name="header">total</f:facet>
 								<h:outputText value="#{row.numberOfPieces}" />
 							</p:column>
+							<p:column>
+								<f:facet name="header">Usage ( % )</f:facet>
+								<div class="progress">
+									<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="#{row.numberOfUsedPieces}" aria-valuemin="0" aria-valuemax="#{row.numberOfPieces}" style="width: #{row.percentageOfUsedPieces}"></div>
+								</div>
+							</p:column>
+							<p:column>
+								<f:facet name="header">Delete</f:facet>
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"><h:commandButton action="#{pushButtons.delete(row)}">
+
+										<f:ajax render="pushButtonForm" />
+									</h:commandButton> </span>
+							</p:column>
 
 						</p:dataTable></td>
 				</tr>
