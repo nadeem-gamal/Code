@@ -5,7 +5,9 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import edu.electronics.dal.orm.Resistor;
 import edu.electronics.dal.orm.VoltageRegulator;
+import edu.electronics.dal.services.ResistorService;
 import edu.electronics.dal.services.VoltageRegulatorService;
 
 @SuppressWarnings("serial")
@@ -29,6 +31,11 @@ public class VoltageRegulators extends BaseBean {
 		VoltageRegulatorService.saveVoltageRegulator(voltageRegulator);
 		voltageRegulatorList.add(voltageRegulator);
 		voltageRegulator = new VoltageRegulator();
+	}
+	
+	public void delete(VoltageRegulator voltageRegulator) {
+		VoltageRegulatorService.deleteVoltageRegulator(voltageRegulator);
+		voltageRegulatorList.remove(voltageRegulator);
 	}
 
 	public VoltageRegulator getVoltageRegulator() {

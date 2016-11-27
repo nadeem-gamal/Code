@@ -73,9 +73,9 @@
 							<p:column filterBy=" #{row.numberOfUsedPieces}" filterMatchMode="contains">
 								<f:facet name="header">Used</f:facet>
 								<h:outputText value="#{row.numberOfUsedPieces}" />
-								<h:commandLink >
+								<h:commandLink>
 									<span class="glyphicon glyphicon-edit" aria-hidden="true"> </span>
-									<f:ajax execute="" render="" />
+									<f:ajax />
 								</h:commandLink>
 
 							</p:column>
@@ -84,29 +84,27 @@
 								<f:facet name="header">Total</f:facet>
 								<h:outputText value="#{row.numberOfPieces}" />
 								<h:commandLink>
-								
+
 									<span class="glyphicon glyphicon-edit" aria-hidden="true"> </span>
-									<f:ajax execute="" render="" />
+									<f:ajax />
 								</h:commandLink>
 							</p:column>
 							<p:column>
 								<f:facet name="header">Usage ( % )</f:facet>
 								<div class="progress">
-									<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="#{row.numberOfUsedPieces}" aria-valuemin="0" aria-valuemax="#{row.numberOfPieces}" style="width: #{row.percentageOfUsedPieces}%;"></div>
+									<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="#{row.numberOfUsedPieces}" aria-valuemin="0" aria-valuemax="#{row.numberOfPieces}" style="width: #{row.percentageOfUsedPieces}"></div>
 								</div>
 							</p:column>
 							<p:column>
 								<f:facet name="header">Delete</f:facet>
-								<h:commandLink actionListener="#{resistors.delete(row)}" >
-									<span class="glyphicon glyphicon-remove" aria-hidden="true"> </span>
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"><h:commandButton action="#{resistors.delete(row)}">
 
-									<f:ajax execute="resistorForm:resistorListId" render="resistorForm:resistorListId" />
-								</h:commandLink>
-
+										<f:ajax render="resistorForm" />
+									</h:commandButton> </span>
 							</p:column>
 
 						</p:dataTable></td>
-						<td style="width: 10px;"></td>
+					<td style="width: 10px;"></td>
 				</tr>
 			</table>
 		</ui:decorate>

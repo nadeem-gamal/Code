@@ -16,6 +16,20 @@ public class BreadBoardService extends BaseService {
 		session.getTransaction().commit();
 		session.close();
 	}
+	public static void updateBreadBoard(BreadBoard breadBoard) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.update(breadBoard);
+		session.getTransaction().commit();
+		session.close();
+	}
+	public static void deleteBreadBoard(BreadBoard breadBoard) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.delete(breadBoard);
+		session.getTransaction().commit();
+		session.close();
+	}
 
 	@SuppressWarnings("deprecation")
 	public static List<BreadBoard> getAllBreadBoards() {

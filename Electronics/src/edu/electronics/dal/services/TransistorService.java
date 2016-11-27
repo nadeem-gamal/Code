@@ -18,6 +18,22 @@ public class TransistorService extends BaseService {
 		session.close();
 	}
 
+	public static void updateTransistor(Transistor transistor) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.update(transistor);
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	public static void deleteTransistor(Transistor transistor) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.delete(transistor);
+		session.getTransaction().commit();
+		session.close();
+	}
+
 	@SuppressWarnings("deprecation")
 	public static List<Transistor> getAllTransistors() {
 		Session session = DataAccess.openSession();

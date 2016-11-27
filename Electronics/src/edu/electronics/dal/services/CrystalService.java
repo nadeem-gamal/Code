@@ -18,6 +18,20 @@ public class CrystalService extends BaseService {
 		session.getTransaction().commit();
 		session.close();
 	}
+	public static void updateCrystal(Crystal crystal) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.update(crystal);
+		session.getTransaction().commit();
+		session.close();
+	}
+	public static void deleteCrystal(Crystal crystal) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.delete(crystal);
+		session.getTransaction().commit();
+		session.close();
+	}
 
 	@SuppressWarnings("deprecation")
 	public static List<Crystal> getAllCrystals() {

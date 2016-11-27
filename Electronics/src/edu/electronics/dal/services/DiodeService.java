@@ -17,6 +17,20 @@ public class DiodeService extends BaseService {
 		session.getTransaction().commit();
 		session.close();
 	}
+	public static void updateDiode(Diode diode) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.update(diode);
+		session.getTransaction().commit();
+		session.close();
+	}
+	public static void deleteDiode(Diode diode) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.delete(diode);
+		session.getTransaction().commit();
+		session.close();
+	}
 
 	@SuppressWarnings("deprecation")
 	public static List<Diode> getAllDiodes() {

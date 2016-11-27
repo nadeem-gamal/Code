@@ -6,7 +6,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import edu.electronics.dal.orm.PushButton;
+import edu.electronics.dal.orm.Resistor;
 import edu.electronics.dal.services.PushButtonService;
+import edu.electronics.dal.services.ResistorService;
 
 @SuppressWarnings("serial")
 @ManagedBean(name = "pushButtons")
@@ -29,6 +31,11 @@ public class PushButtons extends BaseBean {
 		PushButtonService.savePushButton(pushButton);
 		pushButtonList.add(pushButton);
 		pushButton= new PushButton();
+	}
+	
+	public void delete(PushButton pushButton) {
+		PushButtonService.deletePushButton(pushButton);
+		pushButtonList.remove(pushButton);
 	}
 
 	public PushButton getPushButton() {

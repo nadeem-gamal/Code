@@ -24,22 +24,16 @@
 		</property>
 
 		<!-- Assume test is the database name -->
-		<property name="hibernate.connection.url">
-			jdbc:mysql://192.168.1.3:3306/electronics
-		</property>
-		<property name="hibernate.connection.username">
-			user1
-		</property>
-		<property name="hibernate.connection.password">
-			user1
-		</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost/electronics</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password"></property>
 
 		<property name="hbm2ddl.auto">update</property>
 
 		<!-- List of XML mapping files -->
 		<mapping class="edu.electronics.dal.orm.Battery" />
 		<mapping class="edu.electronics.dal.orm.BreadBoard" />
-		<mapping class="edu.electronics.dal.orm.Capacitor" ></mapping>
+		<mapping class="edu.electronics.dal.orm.Capacitor" />
 		<mapping class="edu.electronics.dal.orm.Crystal" />
 		<mapping class="edu.electronics.dal.orm.Diode" />
 		<mapping class="edu.electronics.dal.orm.DipSwitch" />

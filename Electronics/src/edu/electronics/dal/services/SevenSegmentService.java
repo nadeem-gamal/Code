@@ -17,6 +17,20 @@ public class SevenSegmentService extends BaseService {
 		session.getTransaction().commit();
 		session.close();
 	}
+	public static void updateSevenSegment(SevenSegment sevenSegment) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.update(sevenSegment);
+		session.getTransaction().commit();
+		session.close();
+	}
+	public static void deleteSevenSegment(SevenSegment sevenSegment) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.delete(sevenSegment);
+		session.getTransaction().commit();
+		session.close();
+	}
 
 	@SuppressWarnings("deprecation")
 	public static List<SevenSegment> getAllSevenSegments() {

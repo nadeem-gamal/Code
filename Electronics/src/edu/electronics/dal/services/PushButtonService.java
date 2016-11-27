@@ -17,6 +17,20 @@ public class PushButtonService extends BaseService {
 		session.getTransaction().commit();
 		session.close();
 	}
+	public static void updatePushButton(PushButton pushButton) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.update(pushButton);
+		session.getTransaction().commit();
+		session.close();
+	}
+	public static void deletePushButton(PushButton pushButton) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.delete(pushButton);
+		session.getTransaction().commit();
+		session.close();
+	}
 
 	@SuppressWarnings("deprecation")
 	public static List<PushButton> getAllPushButtons() {

@@ -6,7 +6,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import edu.electronics.dal.orm.Diode;
+import edu.electronics.dal.orm.Resistor;
 import edu.electronics.dal.services.DiodeService;
+import edu.electronics.dal.services.ResistorService;
 
 @SuppressWarnings("serial")
 @ManagedBean(name = "diodes")
@@ -29,6 +31,11 @@ public class Diodes extends BaseBean {
 		DiodeService.saveDiode(diode);
 		diodeList.add(diode);
 		diode = new Diode();
+	}
+	
+	public void delete(Diode diode) {
+		DiodeService.deleteDiode(diode);
+		diodeList.remove(diode);
 	}
 
 	public Diode getDiode() {
