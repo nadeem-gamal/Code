@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 
 @Entity
 public class Capacitor extends BaseEntity {
@@ -66,4 +67,14 @@ public class Capacitor extends BaseEntity {
 	public void setType(int type) {
 		this.type = type;
 	}
+	
+	@Transient
+	public int getPercentageOfUsedPieces() {
+		try {
+			return (numberOfUsedPieces * 100 / numberOfPieces);
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+
 }

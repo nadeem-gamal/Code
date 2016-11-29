@@ -17,6 +17,22 @@ public class BatteryService extends BaseService {
 		session.close();
 	}
 
+	public static void updateBattery(Battery battery) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.update(battery);
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	public static void deleteBattery(Battery battery) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.delete(battery);
+		session.getTransaction().commit();
+		session.close();
+	}
+
 	@SuppressWarnings("deprecation")
 	public static List<Battery> getAllBatteries() {
 		Session session = DataAccess.openSession();

@@ -6,7 +6,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import edu.electronics.dal.orm.Crystal;
+import edu.electronics.dal.orm.Resistor;
 import edu.electronics.dal.services.CrystalService;
+import edu.electronics.dal.services.ResistorService;
 
 @SuppressWarnings("serial")
 @ManagedBean(name = "crystals")
@@ -31,6 +33,11 @@ public class Crystals extends BaseBean {
 		crystal = new Crystal();
 	}
 
+	
+	public void delete(Crystal crystal) {
+		CrystalService.deleteCrystal(crystal);
+		crystalList.remove(crystal);
+	}
 	public Crystal getCrystal() {
 		return crystal;
 	}

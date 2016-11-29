@@ -17,6 +17,20 @@ public class CapacitorService extends BaseService {
 		session.getTransaction().commit();
 		session.close();
 	}
+	public static void updateCapacitor(Capacitor capacitor) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.update(capacitor);
+		session.getTransaction().commit();
+		session.close();
+	}
+	public static void deleteCapacitor(Capacitor capacitor) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.delete(capacitor);
+		session.getTransaction().commit();
+		session.close();
+	}
 
 	@SuppressWarnings("deprecation")
 	public static List<Capacitor> getAllCapacitors() {

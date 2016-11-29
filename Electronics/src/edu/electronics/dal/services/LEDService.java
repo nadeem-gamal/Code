@@ -17,6 +17,20 @@ public class LEDService extends BaseService {
 		session.getTransaction().commit();
 		session.close();
 	}
+	public static void updateLED(LED led) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.update(led);
+		session.getTransaction().commit();
+		session.close();
+	}
+	public static void deleteLED(LED led) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.delete(led);
+		session.getTransaction().commit();
+		session.close();
+	}
 
 	@SuppressWarnings("deprecation")
 	public static List<LED> getAllLEDs() {

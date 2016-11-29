@@ -5,7 +5,9 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import edu.electronics.dal.orm.Resistor;
 import edu.electronics.dal.orm.SevenSegment;
+import edu.electronics.dal.services.ResistorService;
 import edu.electronics.dal.services.SevenSegmentService;
 
 @SuppressWarnings("serial")
@@ -29,6 +31,11 @@ public class SevenSegemts extends BaseBean {
 		SevenSegmentService.saveSevenSegment(sevenSegment);
 		sevenSegmentList.add(sevenSegment);
 		sevenSegment = new SevenSegment();
+	}
+	
+	public void delete(SevenSegment sevenSegment) {
+		SevenSegmentService.deleteSevenSegment(sevenSegment);
+		sevenSegmentList.remove(sevenSegment);
 	}
 
 	public SevenSegment getSevenSegment() {

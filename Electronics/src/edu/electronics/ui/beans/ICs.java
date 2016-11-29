@@ -6,7 +6,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import edu.electronics.dal.orm.IC;
+import edu.electronics.dal.orm.Resistor;
 import edu.electronics.dal.services.ICService;
+import edu.electronics.dal.services.ResistorService;
 
 @SuppressWarnings("serial")
 @ManagedBean(name = "ics")
@@ -29,6 +31,11 @@ public class ICs extends BaseBean {
 		ICService.saveIC(ic);
 		icList.add(ic);
 		ic = new IC();
+	}
+	
+	public void delete(IC ic) {
+		ICService.deleteIC(ic);
+		icList.remove(ic);
 	}
 
 	public IC getIc() {

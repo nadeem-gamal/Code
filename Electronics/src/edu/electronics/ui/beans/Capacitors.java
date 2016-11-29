@@ -6,7 +6,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import edu.electronics.dal.orm.Capacitor;
+import edu.electronics.dal.orm.Resistor;
 import edu.electronics.dal.services.CapacitorService;
+import edu.electronics.dal.services.ResistorService;
 
 @SuppressWarnings("serial")
 @ManagedBean(name = "capacitors")
@@ -29,6 +31,12 @@ public class Capacitors extends BaseBean {
 		CapacitorService.saveCapacitor(capacitor);
 		capacitorList.add(capacitor);
 		capacitor = new Capacitor();
+	}
+
+	
+	public void delete(Capacitor capacitor) {
+		CapacitorService.deleteCapacitor(capacitor);
+		capacitorList.remove(capacitor);
 	}
 
 	public Capacitor getCapacitor() {

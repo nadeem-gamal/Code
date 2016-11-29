@@ -6,7 +6,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import edu.electronics.dal.orm.DipSwitch;
+import edu.electronics.dal.orm.Resistor;
 import edu.electronics.dal.services.DipSwitchService;
+import edu.electronics.dal.services.ResistorService;
 
 @SuppressWarnings("serial")
 @ManagedBean(name = "dipSwitches")
@@ -31,6 +33,11 @@ public class DipSwitches extends BaseBean {
 		dipSwitch = new DipSwitch();
 	}
 
+	
+	public void delete(DipSwitch dipSwitch) {
+		DipSwitchService.deleteDipSwitch(dipSwitch);
+		dipSwitchList.remove(dipSwitch);
+	}
 	public DipSwitch getDipSwitch() {
 		return dipSwitch;
 	}

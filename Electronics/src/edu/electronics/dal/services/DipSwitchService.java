@@ -17,6 +17,20 @@ public class DipSwitchService extends BaseService {
 		session.getTransaction().commit();
 		session.close();
 	}
+	public static void updateDipSwitch(DipSwitch dipSwitch) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.update(dipSwitch);
+		session.getTransaction().commit();
+		session.close();
+	}
+	public static void deleteDipSwitch(DipSwitch dipSwitch) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.delete(dipSwitch);
+		session.getTransaction().commit();
+		session.close();
+	}
 
 	@SuppressWarnings("deprecation")
 	public static List<DipSwitch> getAllDipSwitches() {

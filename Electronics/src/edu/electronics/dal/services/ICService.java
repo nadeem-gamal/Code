@@ -16,6 +16,20 @@ public class ICService extends BaseService {
 		session.getTransaction().commit();
 		session.close();
 	}
+	public static void updateIC(IC ic) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.update(ic);
+		session.getTransaction().commit();
+		session.close();
+	}
+	public static void deleteIC(IC ic) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.delete(ic);
+		session.getTransaction().commit();
+		session.close();
+	}
 
 	@SuppressWarnings("deprecation")
 	public static List<IC> getAllICs() {

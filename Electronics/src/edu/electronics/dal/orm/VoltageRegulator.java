@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 
 @Entity
 public class VoltageRegulator extends BaseEntity {
@@ -56,6 +57,15 @@ public class VoltageRegulator extends BaseEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Transient
+	public int getPercentageOfUsedPieces() {
+		try {
+			return (numberOfUsedPieces * 100 / numberOfPieces);
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
 }

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 
 @Entity
 public class IC extends BaseEntity {
@@ -101,6 +102,15 @@ public class IC extends BaseEntity {
 
 	public void setDataSheet(String dataSheet) {
 		this.dataSheet = dataSheet;
+	}
+
+	@Transient
+	public int getPercentageOfUsedPieces() {
+		try {
+			return (numberOfUsedPieces * 100 / numberOfPieces);
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
 }

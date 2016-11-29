@@ -17,6 +17,14 @@ public class ResistorService extends BaseService {
 		session.close();
 	}
 	
+	public static void updateResistor(Resistor resistor) {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		session.update(resistor);
+		session.getTransaction().commit();
+		session.close();
+	}
+	
 	public static void deleteResistor(Resistor resistor) {
 		Session session = DataAccess.openSession();
 		session.beginTransaction();

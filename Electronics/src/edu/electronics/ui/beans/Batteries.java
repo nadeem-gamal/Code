@@ -6,7 +6,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import edu.electronics.dal.orm.Battery;
+import edu.electronics.dal.orm.Resistor;
 import edu.electronics.dal.services.BatteryService;
+import edu.electronics.dal.services.ResistorService;
 
 @SuppressWarnings("serial")
 @ManagedBean(name = "batteries")
@@ -31,6 +33,11 @@ public class Batteries extends BaseBean {
 		battery = new Battery();
 	}
 
+	public void delete(Battery battery) {
+		BatteryService.deleteBattery(battery);
+		batteryList.remove(battery);
+	}
+	
 	public Battery getBattery() {
 		return battery;
 	}

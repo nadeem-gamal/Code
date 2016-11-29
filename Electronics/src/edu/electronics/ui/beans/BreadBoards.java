@@ -6,7 +6,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import edu.electronics.dal.orm.BreadBoard;
+import edu.electronics.dal.orm.Resistor;
 import edu.electronics.dal.services.BreadBoardService;
+import edu.electronics.dal.services.ResistorService;
 
 @SuppressWarnings("serial")
 @ManagedBean(name = "breadBoards")
@@ -29,6 +31,12 @@ public class BreadBoards extends BaseBean {
 		BreadBoardService.saveBreadBoard(breadBoard);
 		breadBoardList.add(breadBoard);
 		breadBoard = new BreadBoard();
+	}
+
+	
+	public void delete(BreadBoard breadBoard) {
+		BreadBoardService.deleteBreadBoard(breadBoard);
+		breadBoardList.remove(breadBoard);
 	}
 
 	public BreadBoard getBreadBoard() {
