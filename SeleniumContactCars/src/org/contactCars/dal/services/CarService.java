@@ -38,6 +38,20 @@ public class CarService extends BaseService {
 		session.close();
 	}
 
+	public static void deleteAllCars() {
+		Session session = DataAccess.openSession();
+		session.beginTransaction();
+		try {
+			for (Car car : getAllCars()) {
+				session.delete(car);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		session.getTransaction().commit();
+		session.close();
+	}
+
 	public static List<Car> getAllCars() {
 		Session session = DataAccess.openSession();
 		session.beginTransaction();
