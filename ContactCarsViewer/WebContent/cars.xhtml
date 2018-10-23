@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+	<h:form id="carFormId">
+
+		<h1>CARS</h1>
+
+		<p:dataTable value="#{cars.carList}" var="car" rows="#{cars.tableRows}" paginator="true" reflow="true">
+			<p:column headerText="Brand" filterBy="#{car.brand}" filterMatchMode="contains">
+				<h:outputText value="#{car.brand}" />
+			</p:column>
+
+			<p:column headerText="Model" filterBy="#{car.model}" filterMatchMode="contains">
+				<h:outputText value="#{car.model}" />
+			</p:column>
+			<p:column headerText="Year" filterBy="#{car.year}" filterMatchMode="contains">
+				<h:outputText value="#{car.year}" />
+			</p:column>
+			<p:column headerText="Price" filterBy="#{car.year}" filterMatchMode="contains">
+				<h:outputText value="#{car.price}" />
+			</p:column>
+			<p:column headerText="URL">
+				<h:outputLink value="#{car.url}" target="_blank">
+				#{car.url}
+				</h:outputLink>
+
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+</h:body>
+</html>
