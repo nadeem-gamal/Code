@@ -6,8 +6,10 @@
 	<h:form id="carFormId">
 
 		<h1>CARS</h1>
-
-		<p:dataTable value="#{cars.carList}" var="car" rows="#{cars.tableRows}" paginator="true" reflow="true">
+<!-- rows="#{cars.tableRows}"  paginator="true" -->
+		<p:dataTable value="#{cars.carList}" var="car" 
+		 
+		 reflow="true">
 			<p:column headerText="Brand" filterBy="#{car.brand}" filterMatchMode="contains">
 				<h:outputText value="#{car.brand}" />
 			</p:column>

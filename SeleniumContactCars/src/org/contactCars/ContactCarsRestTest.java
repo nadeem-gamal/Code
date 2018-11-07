@@ -2,6 +2,8 @@ package org.contactCars;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.contactCars.dal.orm.Car;
 import org.contactCars.dal.services.CarService;
@@ -14,6 +16,7 @@ public class ContactCarsRestTest {
 
 	private static String baseUrl = "https://www.contactcars.com";
 	private static String searchUrl = baseUrl + "/usedcars?search=uc&page=";
+	private static Set<String> urlSet = new HashSet<String>();
 
 	public static void test() {
 		// try {
@@ -41,7 +44,7 @@ public class ContactCarsRestTest {
 		int i = 0;
 		try {
 			System.out.println("Start: " + new Date());
-			for (i = 1; i <= 682; i++) {
+			for (i = 1; i <= 2; i++) {
 				Document doc = Jsoup.connect(searchUrl + i).get();
 				// doc.select("div#latest_cars_new").forEach(System.out::println);
 				Elements elements = doc.select("div#latest_cars_new");
@@ -49,14 +52,14 @@ public class ContactCarsRestTest {
 				for (Element element : elements) {
 					Elements items = element.select("div.item");
 					for (Element item : items) {
-						// System.out.println(item);
+//						 System.out.println(item);
 						// System.out.println("Year: " +
 						// item.select("time.right").text());
 						// System.out.println("Price: " +
 						// item.select("span").text().split(" ")[0].replace(",",
 						// ""));
-						// System.out.println("URL: " + baseUrl +
-						// item.select("a").attr("href"));
+						 System.out.println("URL: " + baseUrl +
+						 item.select("a").attr("href"));
 						// System.out.println("Brand: " +
 						// item.select("p").get(0).text().split(" - ")[0]);
 						// System.out.println("Model: " +
@@ -70,11 +73,11 @@ public class ContactCarsRestTest {
 						car.setUrl(baseUrl + item.select("a").attr("href"));
 						car.setYear(Long.parseLong(item.select("time.right").text()));
 						CarService.saveCar(car);
-
-//						System.out.println("=========================");
+						urlSet.add(car.getUrl());
+						System.out.println("=========================");
 					}
 					// System.out.println(element);
-					// System.out.println("-------------------------");
+					 System.out.println("-------------------------");
 				}
 //				try {
 //					TimeUnit.SECONDS.sleep(5);
@@ -82,6 +85,9 @@ public class ContactCarsRestTest {
 //					e.printStackTrace();
 //				}
 			}
+
+			System.out.println("URL size: " + urlSet.size());
+			
 			System.out.println("End: " + new Date());
 		} catch (IOException e) {
 			System.out.println("Exception i value = " + i);
