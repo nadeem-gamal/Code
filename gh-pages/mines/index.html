@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mines</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	
+	<script>
+		var selectBomb = false;
+		var numberOfSelectedBomb = 10;
+		var closedBtns = 100;
+
+		var toggleBombText = function(btn){
+			$(btn).toggleClass('active');
+			if(selectBomb == true){
+				selectBomb = false;
+				$('#bombText').html('Open');
+			}else{
+				selectBomb = true;
+				$('#bombText').html('Select bomb');
+			}
+		}
+		var gameMat;
+		var isValidRowAndCol = function (row, col){
+			if((row >= 0) && (row <= 9) && (col >= 0) && (col <= 9)){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		var initGame = function(){
+			$('#minesid').html('');
+			selectBomb = false;
+			numberOfSelectedBomb = 10;
+			closedBtns = 100;
+			$('#numberOfBombText').html('Bomb: ' + numberOfSelectedBomb);
+			$('#bombText').html('Open');
+			var btnCount = 0;
+			gameMat = new Array(10);
+			for(i = 0; i < 10; i++){
+				gameMat[i] = new Array(10);
+				for(j = 0; j < 10; j++){
+					gameMat[i][j] = 0;
+					$mineButton = "<button id='" + btnCount + "' type='button' class='btn btn-primary btn-sm'  value='0' style='margin:1px;width:30px;height:30px;'></button>";
+					$('#minesid').append($mineButton);
+					btnCount++;
+				}
+				$('#minesid').append("<br />");
+			}
+			
+			var numberOfMines = 10;
+			while(numberOfMines > 0){
+				row = Math.floor(Math.random()*10);
+				col = Math.floor(Math.random()*10);
+				if(gameMat[row][col] != -1){
+					gameMat[row][col] = -1;
+					numberOfMines--;
+				}
+			}
+			
+			for(row = 0; row < 10; row++){
+				for(col = 0; col < 10; col++){
+					var numberOfBombs = 0;
+					if(gameMat[row][col] != -1){
+						if(isValidRowAndCol(row-1, col-1)){
+							if(gameMat[row-1][col-1] == -1){
+								numberOfBombs++;
+							}
+						}
+						
+						if(isValidRowAndCol(row-1, col)){
+							if(gameMat[row-1][col] == -1){
+								numberOfBombs++;
+							}
+						}
+						
+						if(isValidRowAndCol(row-1, col+1)){
+							if(gameMat[row-1][col+1] == -1){
+								numberOfBombs++;
+							}
+						}
+						
+						if(isValidRowAndCol(row, col-1)){
+							if(gameMat[row][col-1] == -1){
+								numberOfBombs++;
+							}
+						}
+						
+						if(isValidRowAndCol(row, col+1)){
+							if(gameMat[row][col+1] == -1){
+								numberOfBombs++;
+							}
+						}
+						
+						if(isValidRowAndCol(row+1, col-1)){
+							if(gameMat[row+1][col-1] == -1){
+								numberOfBombs++;
+							}
+						}
+						
+						if(isValidRowAndCol(row+1, col)){
+							if(gameMat[row+1][col] == -1){
+								numberOfBombs++;
+							}
+						}
+						
+						if(isValidRowAndCol(row+1, col+1)){
+							if(gameMat[row+1][col+1] == -1){
+								numberOfBombs++;
+							}
+						}
+						gameMat[row][col] = numberOfBombs;
+					}
+					
+					buttonNumber = (row * 10) + col;
+					$('#' + buttonNumber).attr('value', gameMat[row][col]);
+				}
+			}
+
+			
+			var validateBombs = function(){
+				//Validating bombs
+				for(row = 0; row < 10; row++){
+					for(col = 0; col < 10; col++){
+						buttonNumber = (row * 10) + col;
+						if(($('#' + buttonNumber).html() == '!') && ($('#' + buttonNumber).attr('value') == '-1')){
+							$('#' + buttonNumber).html('T');
+							$('#' + buttonNumber).removeClass('btn-primary');
+							$('#' + buttonNumber).addClass('btn-success');
+							console.log(($('#' + buttonNumber).html()) + ', ' + ($('#' + buttonNumber).attr('value')));
+						}else if(($('#' + buttonNumber).html() == '!') && ($('#' + buttonNumber).attr('value') != '-1')){
+							$('#' + buttonNumber).html('F');
+							$('#' + buttonNumber).removeClass('btn-primary');
+							$('#' + buttonNumber).addClass('btn-danger');
+							console.log(($('#' + buttonNumber).html()) + ', ' + ($('#' + buttonNumber).attr('value')));
+						}
+					}
+				}
+				//Validating bombs
+			}
+			
+			$('button').click(function(){
+				if((selectBomb == false) && ($(this).html() == "")){
+					if($(this).attr('value') == 0){
+						$(this).html(0);
+						closedBtns--;
+					}else{
+						if($(this).attr('value') == -1){
+							$(this).html($(this).attr('value'));
+							$(this).removeClass('btn-primary');
+							$(this).addClass('btn-warning');
+							//Validating bombs
+							validateBombs();
+							//Validating bombs
+							alert('Game Over');
+							initGame();
+						}else{
+							$(this).html($(this).attr('value'));
+							closedBtns--;
+						}
+					}
+				}else{
+					if(($(this).html() == "") && (numberOfSelectedBomb > 0)){
+						$(this).html('!');
+						numberOfSelectedBomb--;
+						$('#numberOfBombText').html('Bomb: ' + numberOfSelectedBomb);
+						closedBtns--;
+					}
+				}
+				if(closedBtns == 0){
+					//Validating bombs
+					validateBombs();
+					//Validating bombs
+					alert('Win');
+				}
+			});
+		}
+		$(document).ready(function(){
+			initGame();
+		});
+	</script>
+  </head>
+  <body>
+    
+	<div class="container">
+	<h1>Mines</h1>
+	<br />
+	<button type="button" class="btn btn-lg btn-danger" onclick="initGame();">Reset</button>
+	<button type="button" class="btn btn-lg btn-warning" onclick="toggleBombText(this);">Select bomb</button>
+	<br />
+	<br />
+	<p id="bombText">Open</p>
+	<br />
+	<p id="numberOfBombText"></p>
+	</div>
+	
+<div class="container" id="minesid" style="margin-top: 25px;">
+</div>	
+
+<div class="container" >
+
+<br /><br /><br />
+<p>Nadeem Gamal</p>
+
+
+</div>
+  </body>
+</html>
