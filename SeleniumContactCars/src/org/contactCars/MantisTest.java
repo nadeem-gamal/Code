@@ -17,10 +17,10 @@ public class MantisTest {
 		driver.get("http://risksupport.ejada.com/mantisk/view_all_bug_page.php");
 
 		WebElement usernameBox = driver.findElement(By.xpath("//input[@name='username']"));
-		usernameBox.sendKeys("ngamal");
+		usernameBox.sendKeys("****");
 
 		WebElement passwordBox = driver.findElement(By.xpath("//input[@name='password']"));
-		passwordBox.sendKeys("mantisdevpwd");
+		passwordBox.sendKeys("****");
 
 		WebElement buttonBox = driver.findElement(By.xpath("//input[@value='Login']"));
 		buttonBox.click();
